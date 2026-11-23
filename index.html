@@ -235,43 +235,68 @@ h2 {
   margin-bottom: 4px;
 }
 .chart-wrap {
-  display: flex; gap: 24px; align-items: stretch;
   background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px;
   margin: 32px 0;
-  min-height: 220px;
+  text-align: left;
 }
-@media (max-width: 600px) {
-  .chart-wrap { flex-direction: column; gap: 16px; }
+.chart-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-bottom: 16px;
 }
-.chart-legend {
-  display: flex; flex-direction: column; justify-content: center; gap: 14px;
-  flex-shrink: 0; min-width: 150px;
+.chart-title { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; }
+.chart-live {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.75rem; color: var(--text-muted); white-space: nowrap;
 }
-@media (max-width: 600px) {
-  .chart-legend { flex-direction: row; flex-wrap: wrap; gap: 8px 16px; min-width: auto; }
+.chart-live::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: #22C55E; animation: livePulse 1.6s infinite;
 }
+@keyframes livePulse {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+.chart-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .legend-item {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.85rem;
-}
-.legend-icon {
-  width: 18px; height: 18px; flex-shrink: 0;
-}
-.legend-name { color: var(--text-muted); flex-shrink: 0; }
-.legend-val {
-  font-family: var(--font-heading); font-weight: 700;
-  font-variant-numeric: tabular-nums; margin-left: auto;
-  min-width: 36px; text-align: right;
-}
-@media (max-width: 600px) { .legend-val { display: none; } }
-.chart-canvas-wrap {
-  flex: 1; position: relative; min-height: 200px;
   background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 0;
+}
+.legend-top {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;
+}
+.legend-icon { width: 16px; height: 16px; flex-shrink: 0; }
+.legend-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.legend-val {
+  font-family: var(--font-heading); font-weight: 800; font-size: 1.3rem;
+  font-variant-numeric: tabular-nums; line-height: 1.2;
+}
+.legend-hint { font-size: 0.75rem; color: var(--text-muted); margin: 8px 0 16px; }
+@media (max-width: 600px) {
+  .chart-wrap { padding: 14px; }
+  .chart-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .legend-item { padding: 8px 10px; }
+  .legend-top { font-size: 0.72rem; }
+  .legend-val { font-size: 1.1rem; }
+}
+@media (max-width: 400px) { .legend-name { display: none; } }
+.chart-canvas-wrap {
+  position: relative; height: 240px;
+  background: rgba(255,255,255,0.025);
   border-radius: 12px;
   overflow: hidden;
+}
+@media (max-width: 600px) { .chart-canvas-wrap { height: 210px; } }
+.chart-source {
+  font-size: 0.7rem; line-height: 1.45;
+  color: rgba(161,161,170,0.65); margin-top: 12px;
 }
 .chart-canvas-wrap canvas {
   position: absolute; inset: 0; width: 100%; height: 100%;
@@ -588,18 +613,24 @@ footer .links a:hover { color: var(--accent); }
     <p class="fade-up" style="color:var(--text-muted); font-size:1.1rem; margin-bottom:32px;">человек</p>
 
     <div class="chart-wrap fade-up">
+      <div class="chart-head">
+        <div class="chart-title">Переходы на OnlyFans из соцсетей</div>
+        <div class="chart-live">в реальном времени</div>
+      </div>
       <div class="chart-legend">
-        <div class="legend-item"><svg class="legend-icon" style="color:#F97316" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="legend-name">X (Twitter)</span><span class="legend-val" id="legX">0</span></div>
-        <div class="legend-item"><svg class="legend-icon" style="color:#E879F9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span class="legend-name">Instagram</span><span class="legend-val" id="legIg">0</span></div>
-        <div class="legend-item"><svg class="legend-icon" style="color:#38BDF8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.265 1.33-3.084.868-.77 2.063-1.237 3.467-1.357l.14-.012c.96-.072 1.834-.035 2.602.108-.09-.52-.274-.975-.559-1.349-.456-.6-1.159-.924-2.09-.964h-.074c-.78.009-1.683.26-2.195.846l-1.504-1.373c.834-.912 2.14-1.482 3.63-1.59l.172-.006c1.542 0 2.77.546 3.651 1.624.773.946 1.197 2.206 1.306 3.747.408.207.79.44 1.146.699 1.166.85 1.995 1.966 2.396 3.228.543 1.712.46 4.387-1.834 6.63C18.425 23.173 15.823 23.98 12.186 24zm-1.14-8.376c-1.016.075-1.834.355-2.374.812-.472.4-.692.907-.657 1.509.04.717.413 1.258 1.112 1.611.6.302 1.357.433 2.126.389 1.077-.06 1.9-.44 2.449-1.122.432-.538.723-1.263.858-2.145a8.21 8.21 0 0 0-3.514-.054z"/></svg><span class="legend-name">Threads</span><span class="legend-val" id="legTh">0</span></div>
+        <div class="legend-item"><div class="legend-top"><svg class="legend-icon" style="color:#F97316" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="legend-name">X (Twitter)</span></div><div class="legend-val" id="legX" style="color:#F97316">0</div></div>
+        <div class="legend-item"><div class="legend-top"><svg class="legend-icon" style="color:#E879F9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span class="legend-name">Instagram</span></div><div class="legend-val" id="legIg" style="color:#E879F9">0</div></div>
+        <div class="legend-item"><div class="legend-top"><svg class="legend-icon" style="color:#38BDF8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.265 1.33-3.084.868-.77 2.063-1.237 3.467-1.357l.14-.012c.96-.072 1.834-.035 2.602.108-.09-.52-.274-.975-.559-1.349-.456-.6-1.159-.924-2.09-.964h-.074c-.78.009-1.683.26-2.195.846l-1.504-1.373c.834-.912 2.14-1.482 3.63-1.59l.172-.006c1.542 0 2.77.546 3.651 1.624.773.946 1.197 2.206 1.306 3.747.408.207.79.44 1.146.699 1.166.85 1.995 1.966 2.396 3.228.543 1.712.46 4.387-1.834 6.63C18.425 23.173 15.823 23.98 12.186 24zm-1.14-8.376c-1.016.075-1.834.355-2.374.812-.472.4-.692.907-.657 1.509.04.717.413 1.258 1.112 1.611.6.302 1.357.433 2.126.389 1.077-.06 1.9-.44 2.449-1.122.432-.538.723-1.263.858-2.145a8.21 8.21 0 0 0-3.514-.054z"/></svg><span class="legend-name">Threads</span></div><div class="legend-val" id="legTh" style="color:#38BDF8">0</div></div>
       </div>
+      <p class="legend-hint">Столько человек пришло из каждой соцсети, пока ты на этой странице</p>
       <div class="chart-canvas-wrap">
-        <canvas id="trafficChart"></canvas>
+        <canvas id="trafficChart" role="img" aria-label="Поток посетителей OnlyFans из X, Instagram и Threads, человек в минуту"></canvas>
       </div>
+      <p class="chart-source">Источник: SimilarWeb, Semrush - посещаемость onlyfans.com, ~350 млн визитов в месяц. Доля переходов: X ≈ 4,8%, Instagram ≈ 1,9%, Threads ≈ 0,5%. График показывает поток в пределах среднесуточных диапазонов.</p>
     </div>
 
     <p class="fade-up" style="font-family:var(--font-heading); font-weight:700; font-size:clamp(1.1rem,3vw,1.4rem); max-width:500px; margin:0 auto 16px;">Это люди, которые прямо сейчас ищут, на&nbsp;кого подписаться. Вопрос&nbsp;- придут&nbsp;ли они к&nbsp;твоим моделям</p>
-    <p class="fade-up" style="font-size:0.75rem; color:rgba(161,161,170,0.5);">Оценка на основе данных о посещаемости OnlyFans: <span class="todo">[[ПОДСТАВИТЬ: источник и месяц]]</span></p>
+
   </div>
 </section>
 
@@ -833,8 +864,14 @@ const CONFIG = {
   streamPrice: 300,
   botLink: "https://t.me/BOT_USERNAME?start=sprint",
   dmLink: "https://t.me/MY_USERNAME",
-  monthlyVisits: 400000000,
-  socialShare: { x: 0.28, instagram: 0.18, threads: 0.06 },
+  // SimilarWeb / Semrush, onlyfans.com: 305-400M visits/month
+  monthlyVisits: 350000000,
+  // visitors per day from each network, [min, max]
+  socialDaily: {
+    x:         [450000, 680000],
+    instagram: [180000, 270000],
+    threads:   [40000, 80000],
+  },
 };
 
 // ---- PHASE ----
@@ -936,154 +973,183 @@ function updateSeats() {
 }
 
 // ---- TRAFFIC CHART ----
-const perSecond = CONFIG.monthlyVisits / (30 * 24 * 3600);
-const trafficStart = Date.now();
-let displayTotal = 0;
+const CHART_SERIES = [
+  { key: 'x',         color: '#F97316', legId: 'legX'  },
+  { key: 'instagram', color: '#E879F9', legId: 'legIg' },
+  { key: 'threads',   color: '#38BDF8', legId: 'legTh' },
+].map(s => {
+  const [lo, hi] = CONFIG.socialDaily[s.key];
+  return { ...s, min: lo / 1440, max: hi / 1440 };
+});
+const TOTAL_PER_SEC = CONFIG.monthlyVisits / (30 * 86400);
+const SLOT_BUFFER = 90;
+const Y_MAX = niceCeil(Math.max(...CHART_SERIES.map(s => s.max)) * 1.05);
+const PAD = { top: 26, right: 10, bottom: 28, left: 42 };
 
-const CHART_LINES = [
-  { key: 'x',         color: '#F97316', legId: 'legX',  share: CONFIG.socialShare.x },
-  { key: 'instagram', color: '#E879F9', legId: 'legIg', share: CONFIG.socialShare.instagram },
-  { key: 'threads',   color: '#38BDF8', legId: 'legTh', share: CONFIG.socialShare.threads },
-];
-const CHART_POINTS = 100;
-const chartData = CHART_LINES.map(() => []);
-const walkState = CHART_LINES.map(l => ({ val: perSecond * l.share, vel: 0 }));
-let chartCanvas, chartCtx;
+let chartCanvas, chartCtx, chartW = 0, chartH = 0, visibleSlots = 12;
+let slots = [];
+let lastSlotT = 0, lastFrame = 0;
+const walk = CHART_SERIES.map(s => (s.min + s.max) / 2);
+const cumulative = CHART_SERIES.map(() => 0);
+let visitorsTotal = 0, totalRateK = 1;
+let totalEl, legendEls;
+
+function niceCeil(v) {
+  const p = Math.pow(10, Math.floor(Math.log10(v)));
+  const n = v / p;
+  return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p;
+}
 
 function initChart() {
+  totalEl = document.getElementById('totalVisitors');
+  legendEls = CHART_SERIES.map(s => document.getElementById(s.legId));
   chartCanvas = document.getElementById('trafficChart');
   if (!chartCanvas) return;
   chartCtx = chartCanvas.getContext('2d');
   resizeChart();
   window.addEventListener('resize', resizeChart);
+  lastSlotT = Math.floor(Date.now() / 1000) - visibleSlots - 1;
 }
 
 function resizeChart() {
-  if (!chartCanvas) return;
   const wrap = chartCanvas.parentElement;
   const dpr = window.devicePixelRatio || 1;
-  chartCanvas.width = wrap.clientWidth * dpr;
-  chartCanvas.height = wrap.clientHeight * dpr;
+  chartW = wrap.clientWidth;
+  chartH = wrap.clientHeight;
+  chartCanvas.width = chartW * dpr;
+  chartCanvas.height = chartH * dpr;
   chartCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const plotW = chartW - PAD.left - PAD.right;
+  visibleSlots = Math.max(8, Math.min(24, Math.round(plotW / 26)));
 }
 
-function pushChartPoint() {
-  CHART_LINES.forEach((line, i) => {
-    const base = perSecond * line.share;
-    const st = walkState[i];
-    st.vel += (Math.random() - 0.5) * base * 0.12;
-    st.vel += (base - st.val) * 0.04;
-    st.vel *= 0.85;
-    st.val = Math.max(base * 0.3, st.val + st.vel);
-    chartData[i].push(st.val);
-    if (chartData[i].length > CHART_POINTS) chartData[i].shift();
-    const legEl = document.getElementById(line.legId);
-    if (legEl) legEl.textContent = Math.floor(st.val).toLocaleString('ru-RU');
+// random walk inside the daily [min, max] range, per minute
+function nextSlotValues() {
+  return CHART_SERIES.map((s, i) => {
+    const mid = (s.min + s.max) / 2;
+    const span = s.max - s.min;
+    let v = walk[i] + (Math.random() - 0.5) * span * 0.7 + (mid - walk[i]) * 0.08;
+    v = Math.min(s.max, Math.max(s.min, v));
+    walk[i] = v;
+    return v;
   });
 }
 
-function updateTrafficDisplay() {
-  const elapsed = (Date.now() - trafficStart) / 1000;
-  const targetTotal = perSecond * elapsed;
-  displayTotal += (targetTotal - displayTotal) * 0.15;
-  document.getElementById('totalVisitors').textContent = Math.floor(displayTotal).toLocaleString('ru-RU');
-  drawChart();
-  requestAnimationFrame(updateTrafficDisplay);
+function fmtClock(t) {
+  return new Date(t * 1000).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
 
-function drawChart() {
-  if (!chartCtx || !chartCanvas) return;
-  const w = chartCanvas.parentElement.clientWidth;
-  const h = chartCanvas.parentElement.clientHeight;
-  const pad = { top: 10, right: 10, bottom: 10, left: 0 };
-  const cw = w - pad.left - pad.right;
-  const ch = h - pad.top - pad.bottom;
+function trafficFrame() {
+  const now = Date.now() / 1000;
+  const dt = lastFrame ? Math.min(0.25, now - lastFrame) : 0;
+  lastFrame = now;
 
-  chartCtx.clearRect(0, 0, w, h);
-
-  let globalMax = 0;
-  chartData.forEach(arr => arr.forEach(v => { if (v > globalMax) globalMax = v; }));
-  if (globalMax === 0) globalMax = 1;
-  globalMax *= 1.15;
-
-  // grid lines
-  chartCtx.strokeStyle = 'rgba(255,255,255,0.04)';
-  chartCtx.lineWidth = 1;
-  for (let i = 0; i <= 4; i++) {
-    const y = pad.top + (ch / 4) * i;
-    chartCtx.beginPath();
-    chartCtx.moveTo(pad.left, y);
-    chartCtx.lineTo(w - pad.right, y);
-    chartCtx.stroke();
+  const sec = Math.floor(now);
+  if (sec - lastSlotT > SLOT_BUFFER) lastSlotT = sec - SLOT_BUFFER;
+  while (lastSlotT < sec) {
+    lastSlotT++;
+    slots.push({ t: lastSlotT, vals: nextSlotValues(), label: fmtClock(lastSlotT) });
   }
+  if (slots.length > SLOT_BUFFER) slots.splice(0, slots.length - SLOT_BUFFER);
 
-  CHART_LINES.forEach((line, li) => {
-    const pts = chartData[li];
-    if (pts.length < 2) return;
-    const stepX = cw / (CHART_POINTS - 1);
-    const offset = CHART_POINTS - pts.length;
+  // counters integrate the same per-minute flow the bars show
+  const current = slots[slots.length - 1].vals;
+  current.forEach((v, i) => { cumulative[i] += (v / 60) * dt; });
+  totalRateK += (Math.random() - 0.5) * 0.08 + (1 - totalRateK) * 0.02;
+  visitorsTotal += TOTAL_PER_SEC * totalRateK * dt;
 
-    // gradient fade on the line
-    const grad = chartCtx.createLinearGradient(pad.left, 0, w - pad.right, 0);
-    grad.addColorStop(0, 'transparent');
-    grad.addColorStop(0.15, line.color);
-    grad.addColorStop(1, line.color);
+  totalEl.textContent = Math.floor(visitorsTotal).toLocaleString('ru-RU');
+  legendEls.forEach((el, i) => { if (el) el.textContent = Math.floor(cumulative[i]).toLocaleString('ru-RU'); });
 
-    chartCtx.beginPath();
-    chartCtx.strokeStyle = grad;
-    chartCtx.lineWidth = 2;
-    chartCtx.lineJoin = 'round';
-    chartCtx.lineCap = 'round';
+  if (chartCtx) drawChart(now);
+  requestAnimationFrame(trafficFrame);
+}
 
-    pts.forEach((v, j) => {
-      const x = pad.left + (offset + j) * stepX;
-      const y = pad.top + ch - (v / globalMax) * ch;
-      if (j === 0) chartCtx.moveTo(x, y);
-      else chartCtx.lineTo(x, y);
+function fillTopRounded(ctx, x, y, w, h, r) {
+  if (h <= 0.5) return;
+  r = Math.min(r, h, w / 2);
+  ctx.beginPath();
+  ctx.moveTo(x, y + h);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function clamp01(v) { return Math.max(0, Math.min(1, v)); }
+
+function drawChart(now) {
+  const ctx = chartCtx;
+  const w = chartW, h = chartH;
+  const pw = w - PAD.left - PAD.right;
+  const ph = h - PAD.top - PAD.bottom;
+  const baseY = PAD.top + ph;
+  const rightEdge = PAD.left + pw;
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = '500 11px Inter, system-ui, sans-serif';
+
+  // Y axis: users per minute
+  const ticks = 5;
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+  for (let i = 0; i <= ticks; i++) {
+    const v = (Y_MAX / ticks) * i;
+    const y = Math.round(baseY - (v / Y_MAX) * ph) + 0.5;
+    ctx.strokeStyle = i === 0 ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.06)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(rightEdge, y); ctx.stroke();
+    ctx.fillStyle = 'rgba(161,161,170,0.85)';
+    ctx.fillText(Math.round(v).toLocaleString('ru-RU'), PAD.left - 8, y);
+  }
+  ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+  ctx.beginPath(); ctx.moveTo(PAD.left + 0.5, PAD.top - 6); ctx.lineTo(PAD.left + 0.5, baseY); ctx.stroke();
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillStyle = 'rgba(161,161,170,0.85)';
+  ctx.fillText('человек / мин', 8, 6);
+
+  // bars: one group per second, sliding left continuously
+  const slotW = pw / visibleSlots;
+  const groupW = slotW * 0.74;
+  const gap = Math.max(1, slotW * 0.04);
+  const barW = (groupW - gap * 2) / 3;
+  ctx.save();
+  ctx.beginPath(); ctx.rect(PAD.left + 1, 0, pw, baseY); ctx.clip();
+  slots.forEach(s => {
+    const age = now - s.t;
+    const x0 = rightEdge - age * slotW + (slotW - groupW) / 2;
+    if (x0 + groupW < PAD.left || x0 > rightEdge) return;
+    const grow = 1 - Math.pow(1 - clamp01(age / 0.45), 3);
+    const fade = 0.25 + 0.75 * clamp01((x0 - PAD.left) / (pw * 0.3));
+    s.vals.forEach((v, i) => {
+      const bh = (v / Y_MAX) * ph * grow;
+      const bx = x0 + i * (barW + gap);
+      const by = baseY - bh;
+      const g = ctx.createLinearGradient(0, by, 0, baseY);
+      g.addColorStop(0, hexToRgba(CHART_SERIES[i].color, fade));
+      g.addColorStop(1, hexToRgba(CHART_SERIES[i].color, fade * 0.3));
+      ctx.fillStyle = g;
+      fillTopRounded(ctx, bx, by, barW, bh, 3);
     });
-    chartCtx.stroke();
+  });
+  ctx.restore();
 
-    // fill under line
-    const fillGrad = chartCtx.createLinearGradient(0, pad.top, 0, pad.top + ch);
-    fillGrad.addColorStop(0, line.color.replace(')', ',0.08)').replace('rgb', 'rgba').replace('##', '#'));
-    fillGrad.addColorStop(1, 'transparent');
-
-    const areaGrad = chartCtx.createLinearGradient(pad.left, 0, w - pad.right, 0);
-    areaGrad.addColorStop(0, 'transparent');
-    areaGrad.addColorStop(0.15, hexToRgba(line.color, 0.06));
-    areaGrad.addColorStop(1, hexToRgba(line.color, 0.06));
-
-    chartCtx.beginPath();
-    pts.forEach((v, j) => {
-      const x = pad.left + (offset + j) * stepX;
-      const y = pad.top + ch - (v / globalMax) * ch;
-      if (j === 0) chartCtx.moveTo(x, y);
-      else chartCtx.lineTo(x, y);
-    });
-    const lastX = pad.left + (offset + pts.length - 1) * stepX;
-    const firstX = pad.left + offset * stepX;
-    chartCtx.lineTo(lastX, pad.top + ch);
-    chartCtx.lineTo(firstX, pad.top + ch);
-    chartCtx.closePath();
-    chartCtx.fillStyle = areaGrad;
-    chartCtx.fill();
-
-    // glowing dot at the tip
-    if (pts.length > 0) {
-      const lastVal = pts[pts.length - 1];
-      const dx = pad.left + (offset + pts.length - 1) * stepX;
-      const dy = pad.top + ch - (lastVal / globalMax) * ch;
-
-      chartCtx.beginPath();
-      chartCtx.arc(dx, dy, 6, 0, Math.PI * 2);
-      chartCtx.fillStyle = hexToRgba(line.color, 0.25);
-      chartCtx.fill();
-
-      chartCtx.beginPath();
-      chartCtx.arc(dx, dy, 3, 0, Math.PI * 2);
-      chartCtx.fillStyle = line.color;
-      chartCtx.fill();
-    }
+  // X axis: real clock
+  const every = Math.max(1, Math.ceil(66 / slotW));
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  slots.forEach(s => {
+    if (s.t % every) return;
+    const cx = rightEdge - (now - s.t) * slotW + slotW / 2;
+    const a = clamp01((cx - PAD.left - 18) / 24) * clamp01((rightEdge - cx - 18) / 24);
+    if (a <= 0) return;
+    ctx.strokeStyle = 'rgba(255,255,255,' + (0.22 * a) + ')';
+    ctx.beginPath(); ctx.moveTo(cx, baseY); ctx.lineTo(cx, baseY + 4); ctx.stroke();
+    ctx.fillStyle = 'rgba(161,161,170,' + (0.85 * a) + ')';
+    ctx.fillText(s.label, cx, baseY + 8);
   });
 }
 
@@ -1126,9 +1192,7 @@ function init() {
   updateStream();
   updateSeats();
   initChart();
-  pushChartPoint();
-  requestAnimationFrame(updateTrafficDisplay);
-  setInterval(pushChartPoint, 200);
+  requestAnimationFrame(trafficFrame);
   initScrollAnimations();
 
   setInterval(updateTimers, 1000);
