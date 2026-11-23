@@ -120,10 +120,6 @@ h2 {
   -webkit-background-clip: text; background-clip: text; color: transparent;
   filter: drop-shadow(0 0 16px rgba(249,115,22,0.4));
 }
-.hero-sub {
-  color: var(--text-muted); font-size: clamp(1rem, 2.6vw, 1.15rem); line-height: 1.6;
-  max-width: 560px; margin: 20px auto 28px;
-}
 .hero-stream {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 8px 16px; margin-bottom: 16px;
@@ -140,7 +136,7 @@ h2 {
   .hs-text .hs-sep { display: none; }
   .hs-text span:last-child { color: var(--text-muted); font-size: 0.8rem; }
 }
-.hero-cta-wrap { display: flex; flex-direction: column; align-items: center; }
+.hero-cta-wrap { display: flex; flex-direction: column; align-items: center; margin-top: 28px; }
 .hero h1 .hl {
   background: linear-gradient(90deg, #FDBA74, #F97316);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -685,7 +681,6 @@ footer .links a:hover { color: var(--accent); }
   <div class="hero-content">
     <div class="hero-eyebrow"><span>Спринт по трафику</span></div>
     <h1>Научись приводить трафик на&nbsp;OnlyFans <span class="hl">за&nbsp;30&nbsp;дней</span></h1>
-    <p class="hero-sub">30 дней: наша рабочая схема по&nbsp;X, бета-доступ к&nbsp;софту Amphis и&nbsp;совместный поиск связок в&nbsp;Threads и&nbsp;Instagram. Цель&nbsp;— 100&nbsp;лидов в&nbsp;день на&nbsp;твою модель.</p>
     <div class="hero-cta-wrap">
       <div class="hero-stream" id="heroStream"><span class="hs-text"><span>Бесплатный эфир-презентация</span><span class="hs-sep"> · </span><span>27&nbsp;ноября, 19:00&nbsp;МСК</span></span></div>
       <a href="#" class="btn btn-accent cta-btn" id="heroCta">Записаться на&nbsp;эфир</a>
@@ -806,7 +801,7 @@ footer .links a:hover { color: var(--accent); }
     <h3 class="sub-h fade-up">Что ты получаешь</h3>
     <div class="get-grid">
       <div class="get-card fade-up"><div class="get-num grad-text">01</div><h3>Нашу рабочую схему по&nbsp;X</h3><p>Всё, что уже даёт нам результат: настройка фермы, контент, публикации. Получаешь в&nbsp;первую неделю.</p></div>
-      <div class="get-card fade-up"><div class="get-num grad-text">02</div><h3>Бета-доступ к&nbsp;софту Amphis</h3><p>Работаешь на&nbsp;нашем софте для X, Instagram и&nbsp;Threads и&nbsp;фиксируешь цену навсегда: $150/мес вместо $250.</p></div>
+      <div class="get-card fade-up"><div class="get-num grad-text">02</div><h3>Бета-доступ к&nbsp;софту</h3><p>Работаешь на&nbsp;нашем софте для X, Instagram и&nbsp;Threads.</p></div>
       <div class="get-card fade-up"><div class="get-num grad-text">03</div><h3>Поиск новых связок вместе с&nbsp;нами</h3><p>Threads и&nbsp;Instagram тестируем вместе: каждую неделю проверяем гипотезы и&nbsp;забираем то, что работает.</p></div>
     </div>
     <div class="goal-banner fade-up">Цель спринта&nbsp;— выйти на&nbsp;стабильные 100&nbsp;лидов в&nbsp;день на&nbsp;твою модель.</div>
@@ -920,8 +915,8 @@ footer .links a:hover { color: var(--accent); }
         <div class="check-item"><span class="check-icon">✓</span><span>Участие в спринте 30 дней, старт 30 ноября</span></div>
         <div class="check-item"><span class="check-icon">✓</span><span>Созвоны каждый понедельник с разбором твоих цифр</span></div>
         <div class="check-item"><span class="check-icon">✓</span><span>Закрытый чат участников</span></div>
-        <div class="check-item"><span class="check-icon">✓</span><span>Доступ к нашему софту Amphis на 3 платформы (X, Instagram, Threads) на месяц</span></div>
-        <div class="check-item"><span class="check-icon">✓</span><span>После спринта — Amphis за $150/мес навсегда (обычная цена $250/мес)</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Доступ к нашему софту на 3 платформы (X, Instagram, Threads) на месяц</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>После спринта — софт за $150/мес навсегда (обычная цена $250/мес)</span></div>
         <div class="check-item"><span class="check-icon">✓</span><span class="todo">[[ПОДСТАВИТЬ: доступ к ферме для тестов / другие бонусы]]</span></div>
       </div>
 
@@ -974,11 +969,11 @@ footer .links a:hover { color: var(--accent); }
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Нужен ли опыт?<span class="plus">+</span></button><div class="faq-a"><p>Нужна хотя бы одна модель или страница.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Сколько времени в&nbsp;день?<span class="plus">+</span></button><div class="faq-a"><p>1-2 часа.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Нужны ли дополнительные расходы?<span class="plus">+</span></button><div class="faq-a"><p>Да: аккаунты и&nbsp;прокси закупаешь сам. Ориентир&nbsp;— <span class="todo">[[ПОДСТАВИТЬ]]</span>. Что и&nbsp;где брать&nbsp;— покажем на&nbsp;первом созвоне.</p></div></div>
-      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Подойдёт ли, если я работаю на Mac?<span class="plus">+</span></button><div class="faq-a"><p>Amphis работает на&nbsp;Windows. На&nbsp;Mac запускаешь его на&nbsp;арендованном Windows-сервере&nbsp;— мы сами так работаем.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Подойдёт ли, если я работаю на Mac?<span class="plus">+</span></button><div class="faq-a"><p>Софт работает на&nbsp;Windows. На&nbsp;Mac запускаешь его на&nbsp;арендованном Windows-сервере&nbsp;— мы сами так работаем.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Чьи аккаунты я буду вести?<span class="plus">+</span></button><div class="faq-a"><p>Свои: закупаешь их сам, мы показываем, какие и&nbsp;как настроить.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что если я пропущу созвон?<span class="plus">+</span></button><div class="faq-a"><p>Будет запись.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли возврат?<span class="plus">+</span></button><div class="faq-a"><p><span class="todo">[[ПОДСТАВИТЬ]]</span></p></div></div>
-      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что будет после спринта?<span class="plus">+</span></button><div class="faq-a"><p>Остаёшься с&nbsp;рабочей схемой и&nbsp;софтом Amphis за&nbsp;$150/мес навсегда.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что будет после спринта?<span class="plus">+</span></button><div class="faq-a"><p>Остаёшься с&nbsp;рабочей схемой и&nbsp;софтом за&nbsp;$150/мес навсегда.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Как оплатить?<span class="plus">+</span></button><div class="faq-a"><p>Напиши мне в Telegram, оплата в личке.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли гарантия результата?<span class="plus">+</span></button><div class="faq-a"><p>Честно: нет. Есть система, софт и&nbsp;разбор твоих цифр каждую неделю.</p></div></div>
     </div>
