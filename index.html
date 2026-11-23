@@ -78,8 +78,8 @@ h2 {
 
 /* ---- HERO ---- */
 .hero {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 72vh;
+  min-height: 72svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,36 +102,38 @@ h2 {
 
 .hero-content { position: relative; z-index: 2; max-width: 680px; }
 
-.hero-badge {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+.hero-eyebrow {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin-bottom: 22px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; height: 1px; width: clamp(28px, 8vw, 64px);
+  background: linear-gradient(to right, transparent, var(--accent));
+}
+.hero-eyebrow::after { background: linear-gradient(to left, transparent, var(--accent)); }
+.hero-eyebrow span {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(0.85rem, 2.6vw, 1.05rem);
+  letter-spacing: 0.28em; margin-right: -0.28em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 24px;
-  padding: 6px 16px;
-  border: 1px solid rgba(249,115,22,0.3);
-  border-radius: 100px;
-  background: var(--accent-glow);
+  background: linear-gradient(90deg, #FDBA74, #F97316 55%, #FB923C);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 16px rgba(249,115,22,0.4));
+}
+.hero h1 .hl {
+  background: linear-gradient(90deg, #FDBA74, #F97316);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
 .hero h1 {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: clamp(1.8rem, 6vw, 3.2rem);
-  line-height: 1.15;
-  margin-bottom: 20px;
+  font-size: clamp(2.1rem, 8vw, 3.6rem);
+  line-height: 1.12;
+  margin-bottom: 0;
   letter-spacing: -0.02em;
 }
 
-.hero-sub {
-  color: var(--text-muted);
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  max-width: 540px;
-  margin: 0 auto 36px;
-}
 
 /* Floating social icons */
 .floating-icons {
@@ -581,29 +583,8 @@ footer .links a:hover { color: var(--accent); }
   </div>
 
   <div class="hero-content">
-    <div class="hero-badge">Спринт по трафику · 30 дней · <span id="seatsTotal">20</span> мест</div>
-    <h1>Соцсети душат адалт. Мы&nbsp;нашли, где трафик ещё живой&nbsp;- и&nbsp;проверим это вместе с&nbsp;тобой</h1>
-    <p class="hero-sub">30 дней практики на ферме аккаунтов в&nbsp;X, Threads и&nbsp;Reddit. Созвоны каждый понедельник, наш софт и&nbsp;цель&nbsp;- 100&nbsp;лидов в&nbsp;день.</p>
-
-    <div class="timer-label" id="timerLabel">До эфира</div>
-    <div class="timer" id="timer">
-      <div class="timer-digit"><span id="td">00</span><span>дн</span></div>
-      <div class="timer-sep">:</div>
-      <div class="timer-digit"><span id="th">00</span><span>ч</span></div>
-      <div class="timer-sep">:</div>
-      <div class="timer-digit"><span id="tm">00</span><span>мин</span></div>
-      <div class="timer-sep">:</div>
-      <div class="timer-digit"><span id="ts">00</span><span>сек</span></div>
-    </div>
-
-    <div style="margin-bottom: 28px;">
-      <a href="#" class="btn btn-accent cta-btn" id="heroCta">Записаться на эфир</a>
-    </div>
-
-    <div class="seats" id="heroSeats">
-      <div class="seats-row"><span>Занято мест</span><span><span id="seatsTaken">0</span> / <span id="seatsOf">20</span></span></div>
-      <div class="seats-bar"><div class="seats-fill" id="seatsFill" style="width:0%"></div></div>
-    </div>
+    <div class="hero-eyebrow"><span>Спринт по трафику</span></div>
+    <h1>Научись приводить трафик на&nbsp;OnlyFans <span class="hl">за&nbsp;30&nbsp;дней</span></h1>
   </div>
 </section>
 
@@ -805,11 +786,13 @@ footer .links a:hover { color: var(--accent); }
 <!-- ==================== BLOCK 9: LIVE STREAM ==================== -->
 <section class="section stream-section" id="stream">
   <div class="container" style="text-align:center;">
-    <div class="fade-up" id="streamBlock">
-      <h2 style="margin-bottom:20px;">Хочешь узнать подробнее? Приходи на&nbsp;эфир</h2>
-      <p style="color:var(--text-muted); font-size:1.05rem; max-width:520px; margin:0 auto 32px;">
-        27 ноября в&nbsp;19:00 МСК покажу ферму изнутри: что мы уже сделали, к&nbsp;чему пришли и&nbsp;чему научились. Расскажу, как будет устроен спринт, и&nbsp;отвечу на&nbsp;вопросы. Участники эфира первыми получат оффер со&nbsp;скидкой Черной пятницы и&nbsp;бонусы.
-      </p>
+    <div class="fade-up">
+      <div id="streamBlock">
+        <h2 style="margin-bottom:20px;">Хочешь узнать подробнее? Приходи на&nbsp;эфир</h2>
+        <p style="color:var(--text-muted); font-size:1.05rem; max-width:520px; margin:0 auto 32px;">
+          27 ноября в&nbsp;19:00 МСК покажу ферму изнутри: что мы уже сделали, к&nbsp;чему пришли и&nbsp;чему научились. Расскажу, как будет устроен спринт, и&nbsp;отвечу на&nbsp;вопросы. Участники эфира первыми получат оффер со&nbsp;скидкой Черной пятницы и&nbsp;бонусы.
+        </p>
+      </div>
       <div style="margin-bottom:28px;">
         <div class="timer-label" id="streamTimerLabel">До эфира</div>
         <div class="timer" id="streamTimer">
@@ -854,7 +837,7 @@ footer .links a:hover { color: var(--accent); }
 </footer>
 
 <!-- ==================== STICKY CTA (mobile) ==================== -->
-<div class="sticky-cta" id="stickyCta">
+<div class="sticky-cta visible" id="stickyCta">
   <a href="#" class="btn btn-accent btn-full cta-btn" id="stickyCta-btn" style="padding:14px 20px; font-size:1rem;">Записаться на эфир</a>
 </div>
 
@@ -900,16 +883,6 @@ function updateTimers() {
 
   const label = phase === 'pre' ? 'До эфира' : phase === 'post' ? 'До конца продаж' : '';
 
-  ['', 'st'].forEach(prefix => {
-    const dl = document.getElementById(prefix + 'timerLabel') || document.getElementById((prefix || 'timer') + 'Label');
-  });
-
-  document.getElementById('td').textContent = pad(d);
-  document.getElementById('th').textContent = pad(h);
-  document.getElementById('tm').textContent = pad(m);
-  document.getElementById('ts').textContent = pad(s);
-  document.getElementById('timerLabel').textContent = label;
-
   document.getElementById('std').textContent = pad(d);
   document.getElementById('sth').textContent = pad(h);
   document.getElementById('stm').textContent = pad(m);
@@ -917,8 +890,6 @@ function updateTimers() {
   document.getElementById('streamTimerLabel').textContent = label;
 
   if (phase === 'closed') {
-    document.getElementById('timer').style.display = 'none';
-    document.getElementById('timerLabel').style.display = 'none';
     document.getElementById('streamTimer').style.display = 'none';
     document.getElementById('streamTimerLabel').style.display = 'none';
   }
@@ -973,8 +944,6 @@ function updateSeats() {
   const pct = (taken / CONFIG.seatsTotal * 100).toFixed(1);
   document.querySelectorAll('.seats-taken-mirror').forEach(el => el.textContent = taken);
   document.querySelectorAll('.seats-fill-mirror').forEach(el => el.style.width = pct + '%');
-  document.getElementById('seatsTaken').textContent = taken;
-  document.getElementById('seatsFill').style.width = pct + '%';
 }
 
 // ---- TRAFFIC BARS ----
@@ -1061,12 +1030,6 @@ function toggleFaq(btn) {
   if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
 }
 
-// ---- STICKY CTA ----
-function updateSticky() {
-  const heroBottom = document.getElementById('hero').getBoundingClientRect().bottom;
-  document.getElementById('stickyCta').classList.toggle('visible', heroBottom < 0);
-}
-
 // ---- SCROLL ANIMATIONS ----
 function initScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
@@ -1090,13 +1053,6 @@ function init() {
 
   setInterval(updateTimers, 1000);
   setInterval(() => { updateCTAs(); }, 60000);
-
-  let ticking = false;
-  function onScroll() {
-    if (!ticking) { requestAnimationFrame(() => { updateSticky(); ticking = false; }); ticking = true; }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 }
 
 if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
