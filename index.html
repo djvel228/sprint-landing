@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Спринт по трафику · 30 дней · Alexeev Only</title>
+<meta name="description" content="30 дней практики на ферме аккаунтов в X, Threads и Reddit. Созвоны каждый понедельник, наш софт и цель — 100 лидов в день.">
+<meta property="og:title" content="Спринт по трафику · Alexeev Only">
+<meta property="og:description" content="30 дней совместной работы над трафиком для OnlyFans-агентств.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #09090B;
+  --bg2: #0F0F12;
+  --surface: #18181B;
+  --surface-hover: #1f1f23;
+  --border: #27272A;
+  --text: #FAFAFA;
+  --text-muted: #A1A1AA;
+  --accent: #F97316;
+  --accent-hover: #EA580C;
+  --accent-glow: rgba(249,115,22,0.15);
+  --accent-glow2: rgba(249,115,22,0.08);
+  --todo-bg: rgba(250,204,21,0.15);
+  --todo-border: rgba(250,204,21,0.5);
+  --todo-text: #FACC15;
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.todo {
+  background: var(--todo-bg);
+  border: 1px dashed var(--todo-border);
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: var(--todo-text);
+  font-size: 0.85rem;
+  display: inline;
+}
+
+/* ---- LAYOUT ---- */
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+.container-sm { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+.section { padding: 80px 0; }
+@media (min-width: 768px) { .section { padding: 110px 0; } }
+
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px 40px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249,115,22,0.06) 0%, transparent 70%);
+}
+
+.hero-bg-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 680px; }
+
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  padding: 6px 16px;
+  border: 1px solid rgba(249,115,22,0.3);
+  border-radius: 100px;
+  background: var(--accent-glow);
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 6vw, 3.2rem);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  color: var(--text-muted);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 540px;
+  margin: 0 auto 36px;
+}
+
+/* Floating social icons */
+.floating-icons {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+}
+.float-icon {
+  position: absolute;
+  opacity: 0.12;
+  color: var(--text-muted);
+  animation: floaty 6s ease-in-out infinite;
+}
+@media (max-width: 767px) { .float-icon { display: none; } }
+.float-icon:nth-child(1) { top: 18%; left: 8%; animation-delay: 0s; }
+.float-icon:nth-child(2) { top: 15%; right: 10%; animation-delay: 1.5s; }
+.float-icon:nth-child(3) { bottom: 25%; left: 6%; animation-delay: 3s; }
+.float-icon:nth-child(4) { bottom: 20%; right: 8%; animation-delay: 4.5s; }
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.1; }
+  50% { transform: translateY(-16px) scale(1.08); opacity: 0.2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-icon { animation: none; opacity: 0.12; }
+}
+
+.float-icon svg { width: 44px; height: 44px; }
+
+/* ---- TIMER ---- */
+.timer-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.timer {
+  display: flex; gap: 6px; justify-content: center; align-items: baseline;
+  font-family: var(--font-heading); margin-bottom: 28px;
+}
+.timer-digit {
+  display: flex; flex-direction: column; align-items: center;
+}
+.timer-digit span:first-child {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.timer-digit span:last-child {
+  font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;
+}
+.timer-sep {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text-muted);
+  opacity: 0.4;
+  line-height: 1;
+  align-self: flex-start;
+}
+
+/* ---- CTA BUTTON ---- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 16px 36px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-align: center;
+}
+.btn-accent {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-accent:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--text-muted); color: var(--text); }
+.btn-full { display: block; width: 100%; }
+
+/* ---- SEATS ---- */
+.seats { max-width: 280px; margin: 0 auto; }
+.seats-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; }
+.seats-row span:first-child { color: var(--text-muted); }
+.seats-row span:last-child { font-family: var(--font-heading); font-weight: 700; }
+.seats-bar { height: 6px; border-radius: 100px; background: var(--surface); overflow: hidden; }
+.seats-fill { height: 100%; border-radius: 100px; background: var(--accent); transition: width 0.8s; }
+
+/* ---- TRAFFIC COUNTER (block 2) ---- */
+.traffic-section {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.traffic-big {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(3rem, 10vw, 5rem);
+  color: var(--accent);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 4px;
+}
+.traffic-sources { margin: 32px 0; }
+.traffic-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 0;
+}
+.traffic-row svg { width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0; }
+.traffic-row .tr-label { width: 90px; font-size: 0.85rem; color: var(--text-muted); flex-shrink: 0; }
+.traffic-row .tr-bar { flex: 1; height: 6px; border-radius: 100px; background: var(--surface); overflow: hidden; }
+.traffic-row .tr-bar-fill { height: 100%; border-radius: 100px; background: var(--accent); opacity: 0.6; transition: width 1s; }
+.traffic-row .tr-num { width: 70px; text-align: right; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+/* ---- STORY (block 3) ---- */
+.problem-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+}
+.problem-card .x-mark { color: var(--accent); font-size: 1.2rem; flex-shrink: 0; line-height: 1.4; }
+
+.timeline { position: relative; padding-left: 28px; margin: 40px 0; }
+.timeline::before {
+  content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px;
+  background: rgba(249,115,22,0.25);
+}
+.timeline-item { position: relative; margin-bottom: 28px; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -28px; top: 6px; width: 12px; height: 12px;
+  background: var(--accent); border-radius: 50%;
+  box-shadow: 0 0 10px rgba(249,115,22,0.4);
+}
+.timeline-date { font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; color: var(--accent); margin-bottom: 4px; }
+
+.placeholder-photo {
+  width: 100%; max-width: 320px; aspect-ratio: 4/5; margin: 40px auto 0;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px;
+}
+
+/* ---- HOW IT WORKS (block 4) ---- */
+.steps-grid {
+  display: grid; grid-template-columns: 1fr; gap: 12px;
+  margin-bottom: 40px;
+}
+@media (min-width: 500px) { .steps-grid { grid-template-columns: 1fr 1fr; } }
+
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.2s;
+}
+.step-card:hover { border-color: rgba(249,115,22,0.3); }
+.step-num {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--accent);
+  opacity: 0.3;
+  line-height: 1;
+}
+.step-card h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 10px 0 6px;
+}
+.step-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+.info-banner {
+  background: var(--accent-glow);
+  border: 1px solid rgba(249,115,22,0.2);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  text-align: center;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+.leaderboard {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; margin-bottom: 24px;
+}
+.leaderboard-header {
+  padding: 14px 20px; border-bottom: 1px solid var(--border);
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.leaderboard table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.leaderboard th { padding: 10px 16px; text-align: left; color: var(--text-muted); font-weight: 500; font-size: 0.8rem; }
+.leaderboard td { padding: 10px 16px; border-top: 1px solid rgba(255,255,255,0.04); }
+.leaderboard td:first-child { color: var(--accent); font-weight: 700; }
+.leaderboard .text-right { text-align: right; }
+
+/* ---- FOR WHOM (block 5) ---- */
+.two-cols { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 600px) { .two-cols { grid-template-columns: 1fr 1fr; } }
+
+.list-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+}
+.list-card h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+.list-card h3.accent { color: var(--accent); }
+.list-card ul { list-style: none; }
+.list-card li {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 12px; font-size: 0.9rem; color: var(--text-muted);
+}
+.list-card li .mark { flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+.list-card li .mark-plus { color: var(--accent); }
+.list-card li .mark-minus { color: var(--text-muted); }
+
+/* ---- SKILLS GRID (block 6) ---- */
+.skills-grid {
+  display: grid; grid-template-columns: 1fr; gap: 12px;
+}
+@media (min-width: 480px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.2s;
+}
+.skill-card:hover { border-color: rgba(249,115,22,0.3); }
+.skill-card h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+/* ---- PAST RESULTS (block 7) ---- */
+.slider-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px; }
+.slider-wrap::-webkit-scrollbar { display: none; }
+.slider-track { display: flex; gap: 16px; }
+.slider-card {
+  flex-shrink: 0; width: 280px; aspect-ratio: 4/3;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+
+/* ---- PRICING (block 8) ---- */
+.price-card {
+  background: var(--surface);
+  border: 1px solid rgba(249,115,22,0.3);
+  border-radius: 20px;
+  padding: 36px 28px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.price-amount {
+  text-align: center; margin-bottom: 24px;
+}
+.price-old {
+  font-size: 1.3rem; color: var(--text-muted);
+  text-decoration: line-through; margin-right: 12px;
+}
+.price-new {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.8rem, 8vw, 3.5rem);
+}
+.price-new.accent { color: var(--accent); }
+.price-note { font-size: 0.85rem; color: var(--accent); margin-top: 6px; }
+
+.check-list { margin-bottom: 24px; }
+.check-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 14px; font-size: 0.9rem; color: var(--text-muted);
+}
+.check-icon { color: var(--accent); flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+
+.price-value {
+  text-align: center; font-size: 0.85rem; color: var(--text-muted);
+  font-style: italic; margin-bottom: 24px;
+}
+
+/* ---- STREAM (block 9) ---- */
+.stream-section {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---- FAQ (block 10) ---- */
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 0; cursor: pointer; width: 100%; background: none; border: none;
+  color: var(--text); font-family: var(--font-heading); font-weight: 700;
+  font-size: 1rem; text-align: left;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--accent); }
+.faq-q .plus {
+  font-size: 1.3rem; color: var(--text-muted);
+  transition: transform 0.25s; flex-shrink: 0; margin-left: 12px;
+}
+.faq-q.open .plus { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s;
+}
+.faq-a.open { max-height: 200px; padding-bottom: 20px; }
+.faq-a p { color: var(--text-muted); font-size: 0.95rem; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-a { transition: none; }
+}
+
+/* ---- FOOTER ---- */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 20px;
+  text-align: center;
+}
+footer .brand { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; }
+footer .links { display: flex; gap: 20px; justify-content: center; font-size: 0.9rem; color: var(--text-muted); }
+footer .links a:hover { color: var(--accent); }
+
+/* ---- STICKY CTA ---- */
+.sticky-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  padding: 12px 20px;
+  background: rgba(9,9,11,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+.sticky-cta.visible { transform: translateY(0); }
+@media (min-width: 768px) { .sticky-cta { display: none; } }
+@media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
+
+/* ---- SCROLL ANIMATIONS ---- */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="hero">
+  <div class="hero-bg-grid"></div>
+
+  <div class="floating-icons">
+    <div class="float-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </div>
+    <div class="float-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.265 1.33-3.084.868-.77 2.063-1.237 3.467-1.357l.14-.012c.96-.072 1.834-.035 2.602.108-.09-.52-.274-.975-.559-1.349-.456-.6-1.159-.924-2.09-.964h-.074c-.78.009-1.683.26-2.195.846l-1.504-1.373c.834-.912 2.14-1.482 3.63-1.59l.172-.006c1.542 0 2.77.546 3.651 1.624.773.946 1.197 2.206 1.306 3.747.408.207.79.44 1.146.699 1.166.85 1.995 1.966 2.396 3.228.543 1.712.46 4.387-1.834 6.63C18.425 23.173 15.823 23.98 12.186 24zm-1.14-8.376c-1.016.075-1.834.355-2.374.812-.472.4-.692.907-.657 1.509.04.717.413 1.258 1.112 1.611.6.302 1.357.433 2.126.389 1.077-.06 1.9-.44 2.449-1.122.432-.538.723-1.263.858-2.145a8.21 8.21 0 0 0-3.514-.054z"/></svg>
+    </div>
+    <div class="float-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </div>
+    <div class="float-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0zm6.066 13.98a1.56 1.56 0 01-.076.46c-.525 1.672-2.858 2.96-5.99 2.96s-5.465-1.288-5.99-2.96a1.56 1.56 0 01-.076-.46 1.558 1.558 0 011.038-1.471 7.09 7.09 0 01-.46-1.279 1.558 1.558 0 112.04-.48c.978-.88 2.17-1.355 3.448-1.355l.72-3.372a.3.3 0 01.357-.238l2.436.518a1.08 1.08 0 112.1.07l-2.317-.493-.618 2.895a5.09 5.09 0 013.344 1.345 1.558 1.558 0 112.062.49 7.09 7.09 0 01-.46 1.279 1.558 1.558 0 011.037 1.47zM9.5 13a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm5 0a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm-4.588 2.012a.3.3 0 01.424 0c.65.65 1.648.967 3.047.967h.034c1.399 0 2.397-.316 3.047-.967a.3.3 0 01.424.424c-.78.78-1.933 1.143-3.471 1.143h-.034c-1.538 0-2.691-.363-3.471-1.143a.3.3 0 010-.424z"/></svg>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Спринт по трафику · 30 дней · <span id="seatsTotal">20</span> мест</div>
+    <h1>Соцсети душат адалт. Мы&nbsp;нашли, где трафик ещё живой&nbsp;- и&nbsp;проверим это вместе с&nbsp;тобой</h1>
+    <p class="hero-sub">30 дней практики на ферме аккаунтов в&nbsp;X, Threads и&nbsp;Reddit. Созвоны каждый понедельник, наш софт и&nbsp;цель&nbsp;- 100&nbsp;лидов в&nbsp;день.</p>
+
+    <div class="timer-label" id="timerLabel">До эфира</div>
+    <div class="timer" id="timer">
+      <div class="timer-digit"><span id="td">00</span><span>дн</span></div>
+      <div class="timer-sep">:</div>
+      <div class="timer-digit"><span id="th">00</span><span>ч</span></div>
+      <div class="timer-sep">:</div>
+      <div class="timer-digit"><span id="tm">00</span><span>мин</span></div>
+      <div class="timer-sep">:</div>
+      <div class="timer-digit"><span id="ts">00</span><span>сек</span></div>
+    </div>
+
+    <div style="margin-bottom: 28px;">
+      <a href="#" class="btn btn-accent cta-btn" id="heroCta">Записаться на эфир</a>
+    </div>
+
+    <div class="seats" id="heroSeats">
+      <div class="seats-row"><span>Занято мест</span><span><span id="seatsTaken">0</span> / <span id="seatsOf">20</span></span></div>
+      <div class="seats-bar"><div class="seats-fill" id="seatsFill" style="width:0%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 2: TRAFFIC COUNTER ==================== -->
+<section class="section traffic-section" id="traffic">
+  <div class="container" style="text-align:center;">
+    <p class="fade-up" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:12px;">Прямо сейчас</p>
+    <p class="fade-up" style="color:var(--text-muted); font-size:1.1rem; margin-bottom:8px;">Пока ты читаешь эту страницу, на OnlyFans зашло:</p>
+    <div class="traffic-big fade-up" id="totalVisitors">0</div>
+    <p class="fade-up" style="color:var(--text-muted); font-size:1.1rem; margin-bottom:32px;">человек</p>
+
+    <div class="traffic-sources fade-up">
+      <div class="traffic-row">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <span class="tr-label">X (Twitter)</span>
+        <div class="tr-bar"><div class="tr-bar-fill" id="barX" style="width:0%"></div></div>
+        <span class="tr-num" id="numX"><span class="todo">[[?]]</span></span>
+      </div>
+      <div class="traffic-row">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span class="tr-label">Instagram</span>
+        <div class="tr-bar"><div class="tr-bar-fill" id="barIg" style="width:0%"></div></div>
+        <span class="tr-num" id="numIg"><span class="todo">[[?]]</span></span>
+      </div>
+      <div class="traffic-row">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.265 1.33-3.084.868-.77 2.063-1.237 3.467-1.357l.14-.012c.96-.072 1.834-.035 2.602.108-.09-.52-.274-.975-.559-1.349-.456-.6-1.159-.924-2.09-.964h-.074c-.78.009-1.683.26-2.195.846l-1.504-1.373c.834-.912 2.14-1.482 3.63-1.59l.172-.006c1.542 0 2.77.546 3.651 1.624.773.946 1.197 2.206 1.306 3.747.408.207.79.44 1.146.699 1.166.85 1.995 1.966 2.396 3.228.543 1.712.46 4.387-1.834 6.63C18.425 23.173 15.823 23.98 12.186 24zm-1.14-8.376c-1.016.075-1.834.355-2.374.812-.472.4-.692.907-.657 1.509.04.717.413 1.258 1.112 1.611.6.302 1.357.433 2.126.389 1.077-.06 1.9-.44 2.449-1.122.432-.538.723-1.263.858-2.145a8.21 8.21 0 0 0-3.514-.054z"/></svg>
+        <span class="tr-label">Threads</span>
+        <div class="tr-bar"><div class="tr-bar-fill" id="barTh" style="width:0%"></div></div>
+        <span class="tr-num" id="numTh"><span class="todo">[[?]]</span></span>
+      </div>
+      <div class="traffic-row">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0zm6.066 13.98a1.56 1.56 0 01-.076.46c-.525 1.672-2.858 2.96-5.99 2.96s-5.465-1.288-5.99-2.96a1.56 1.56 0 01-.076-.46 1.558 1.558 0 011.038-1.471 7.09 7.09 0 01-.46-1.279 1.558 1.558 0 112.04-.48c.978-.88 2.17-1.355 3.448-1.355l.72-3.372a.3.3 0 01.357-.238l2.436.518a1.08 1.08 0 112.1.07l-2.317-.493-.618 2.895a5.09 5.09 0 013.344 1.345 1.558 1.558 0 112.062.49 7.09 7.09 0 01-.46 1.279 1.558 1.558 0 011.037 1.47zM9.5 13a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm5 0a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm-4.588 2.012a.3.3 0 01.424 0c.65.65 1.648.967 3.047.967h.034c1.399 0 2.397-.316 3.047-.967a.3.3 0 01.424.424c-.78.78-1.933 1.143-3.471 1.143h-.034c-1.538 0-2.691-.363-3.471-1.143a.3.3 0 010-.424z"/></svg>
+        <span class="tr-label">Reddit</span>
+        <div class="tr-bar"><div class="tr-bar-fill" id="barRd" style="width:0%"></div></div>
+        <span class="tr-num" id="numRd"><span class="todo">[[?]]</span></span>
+      </div>
+    </div>
+
+    <p class="fade-up" style="font-family:var(--font-heading); font-weight:700; font-size:clamp(1.1rem,3vw,1.4rem); max-width:500px; margin:0 auto 16px;">Это люди, которые прямо сейчас ищут, на&nbsp;кого подписаться. Вопрос&nbsp;- придут&nbsp;ли они к&nbsp;твоим моделям</p>
+    <p class="fade-up" style="font-size:0.75rem; color:rgba(161,161,170,0.5);">Оценка на основе данных о посещаемости OnlyFans: <span class="todo">[[ПОДСТАВИТЬ: источник и месяц]]</span></p>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 3: OUR STORY ==================== -->
+<section class="section" id="story">
+  <div class="container">
+    <h2 class="fade-up">Наша история</h2>
+    <p class="fade-up" style="font-size:1.1rem; color:var(--text-muted); margin-bottom:32px; line-height:1.7;">
+      Я&nbsp;- Валерий Алексеев. У&nbsp;меня своё OF-агентство: <span class="todo">[[ПОДСТАВИТЬ: сколько моделей, оборот]]</span>. Мы сталкиваемся с&nbsp;тем же, что и&nbsp;ты.
+    </p>
+
+    <div class="fade-up">
+      <div class="problem-card"><span class="x-mark">✕</span><span>Instagram для адалта фактически закрыт&nbsp;- у&nbsp;нас его забанили в&nbsp;июле 2026.</span></div>
+      <div class="problem-card"><span class="x-mark">✕</span><span>Теневые баны в&nbsp;X и&nbsp;Reddit режут охваты в&nbsp;разы.</span></div>
+      <div class="problem-card"><span class="x-mark">✕</span><span>Один аккаунт = одна точка отказа: бан&nbsp;- и&nbsp;поток подписчиков на&nbsp;ноль.</span></div>
+      <div class="problem-card"><span class="x-mark">✕</span><span>Без трафика чатеры сидят без диалогов, а&nbsp;модели уходят.</span></div>
+      <div class="problem-card"><span class="x-mark">✕</span><span class="todo">[[ПОДСТАВИТЬ: сколько потеряли за год]]</span></div>
+    </div>
+
+    <p class="fade-up" style="font-family:var(--font-heading); font-weight:800; font-size:clamp(1.3rem,4vw,1.7rem); text-align:center; margin:48px 0 32px;">Но выход есть</p>
+
+    <div class="timeline fade-up">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">20 сентября</div>
+        <p style="color:var(--text-muted);">Запустили ферму в&nbsp;X (~27 аккаунтов постоянно) + Reddit</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Результат</div>
+        <p><span class="todo">[[ПОДСТАВИТЬ: что получили, как держим планку]]</span></p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Сейчас</div>
+        <p style="color:var(--text-muted);">Видим стратегию и&nbsp;зовём тебя проверить её&nbsp;вместе</p>
+      </div>
+    </div>
+
+    <div class="placeholder-photo fade-up">Фото автора&nbsp;- Валерий Алексеев</div>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 4: HOW IT WORKS ==================== -->
+<section class="section" id="how">
+  <div class="container">
+    <h2 class="fade-up">Что такое спринт и&nbsp;как он устроен</h2>
+
+    <div class="info-banner fade-up">Это не курс с&nbsp;записями. Программы с&nbsp;уроками нет&nbsp;- есть 30&nbsp;дней работы и&nbsp;отчётность.</div>
+
+    <div class="steps-grid">
+      <div class="step-card fade-up"><div class="step-num">01</div><h3>Получаешь ферму и&nbsp;софт</h3><p>Запускаешь трафик на свою модель</p></div>
+      <div class="step-card fade-up"><div class="step-num">02</div><h3>Работаешь неделю</h3><p>Ведёшь аккаунты, публикуешь контент, собираешь лидов</p></div>
+      <div class="step-card fade-up"><div class="step-num">03</div><h3>Понедельник&nbsp;- созвон</h3><p>Каждый показывает отчёт: сколько аккаунтов, публикаций, лидов</p></div>
+      <div class="step-card fade-up"><div class="step-num">04</div><h3>Разбор и&nbsp;оптимизация</h3><p>Забираем то, что работает у&nbsp;лучших, правим то, что не&nbsp;работает</p></div>
+    </div>
+
+    <div class="leaderboard fade-up">
+      <div class="leaderboard-header">Рейтинг участников (пример)</div>
+      <table>
+        <thead><tr><th>#</th><th>Участник</th><th class="text-right">Аккаунты</th><th class="text-right">Посты</th><th class="text-right">Лиды</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Участник A</td><td class="text-right" style="color:var(--text-muted)">—</td><td class="text-right" style="color:var(--text-muted)">—</td><td class="text-right" style="color:var(--text-muted)">—</td></tr>
+          <tr><td>2</td><td>Участник B</td><td class="text-right" style="color:var(--text-muted)">—</td><td class="text-right" style="color:var(--text-muted)">—</td><td class="text-right" style="color:var(--text-muted)">—</td></tr>
+          <tr><td>3</td><td>Участник C</td><td class="text-right" style="color:var(--text-muted)">—</td><td class="text-right" style="color:var(--text-muted)">—</td><td class="text-right" style="color:var(--text-muted)">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="fade-up" style="text-align:center; color:var(--text-muted); font-style:italic;">Мы не&nbsp;продаём волшебную кнопку. Мы&nbsp;даём систему, софт и&nbsp;30&nbsp;дней тестов рядом с&nbsp;практиками.</p>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 5: FOR WHOM ==================== -->
+<section class="section" id="whom" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <h2 class="fade-up">Для кого / не для кого</h2>
+    <div class="two-cols">
+      <div class="list-card fade-up">
+        <h3 class="accent">Для тебя, если:</h3>
+        <ul>
+          <li><span class="mark mark-plus">+</span>У тебя уже есть модель или агентство</li>
+          <li><span class="mark mark-plus">+</span>Не умеешь стабильно вести трафик или упёрся в&nbsp;его потолок</li>
+          <li><span class="mark mark-plus">+</span>Не понимаешь, как устроены алгоритмы соцсетей и&nbsp;почему аккаунты улетают в&nbsp;бан</li>
+          <li><span class="mark mark-plus">+</span>Готов уделять 1-2 часа в&nbsp;день</li>
+          <li><span class="mark mark-plus">+</span>Хочешь считать цифры, а&nbsp;не верить</li>
+        </ul>
+      </div>
+      <div class="list-card fade-up">
+        <h3>Не для тебя, если:</h3>
+        <ul>
+          <li><span class="mark mark-minus">−</span>Ищешь пассивный доход без работы</li>
+          <li><span class="mark mark-minus">−</span>Ещё нет ни&nbsp;одной модели</li>
+          <li><span class="mark mark-minus">−</span>Ждёшь гарантий заработка</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 6: WHAT YOU'LL LEARN ==================== -->
+<section class="section" id="learn">
+  <div class="container">
+    <h2 class="fade-up">Чему научишься</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-up"><h3>Привлекать аудиторию</h3><p>В X, Threads, Reddit&nbsp;- три платформы, где адалт ещё живой</p></div>
+      <div class="skill-card fade-up"><h3>Вести ферму аккаунтов</h3><p>Без банов, с&nbsp;ротацией и&nbsp;прокси&nbsp;- системно, а&nbsp;не вручную</p></div>
+      <div class="skill-card fade-up"><h3>Приводить лидов на&nbsp;модель</h3><p>Из постов и&nbsp;профилей&nbsp;- прямо в&nbsp;OnlyFans</p></div>
+      <div class="skill-card fade-up"><h3>Уникализировать контент</h3><p>Чтобы платформы не&nbsp;определяли дубликаты</p></div>
+      <div class="skill-card fade-up"><h3>Считать юнит-экономику</h3><p>Трафика: сколько стоит лид, какая связка окупается</p></div>
+      <div class="skill-card fade-up"><h3>Строить трафик как систему</h3><p>А не лотерею&nbsp;- процессы, метрики, масштабирование</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 7: PAST RESULTS ==================== -->
+<section class="section" id="results" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <h2 class="fade-up">Результаты прошлого спринта</h2>
+    <p class="fade-up" style="text-align:center; color:var(--text-muted); margin-top:-24px; margin-bottom:32px;">Год назад мы уже проводили спринт по Reddit.</p>
+
+    <div class="slider-wrap fade-up">
+      <div class="slider-track">
+        <div class="slider-card"><span class="todo" style="text-align:center;">[[ПОДСТАВИТЬ: скрин + результат участника 1]]</span></div>
+        <div class="slider-card"><span class="todo" style="text-align:center;">[[ПОДСТАВИТЬ: скрин + результат участника 2]]</span></div>
+        <div class="slider-card"><span class="todo" style="text-align:center;">[[ПОДСТАВИТЬ: скрин + результат участника 3]]</span></div>
+        <div class="slider-card"><span class="todo" style="text-align:center;">[[ПОДСТАВИТЬ: скрин + результат участника 4]]</span></div>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:0.75rem; color:var(--text-muted); margin-top:12px;">Свайпай для просмотра →</p>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 8: PRICING ==================== -->
+<section class="section" id="price">
+  <div class="container-sm">
+    <h2 class="fade-up">Цена и что входит</h2>
+    <div class="price-card fade-up">
+      <div class="price-amount" id="priceBlock">
+        <span class="price-new" id="priceMain">$450</span>
+        <div class="price-note" id="priceNote">На эфире 27 ноября - специальная цена для первых участников</div>
+      </div>
+
+      <div class="check-list">
+        <div class="check-item"><span class="check-icon">✓</span><span>Участие в спринте 30 дней, старт 30 ноября</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Созвоны каждый понедельник с разбором твоих цифр</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Закрытый чат участников</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Доступ к нашему софту Amphis на 3 платформы (X, Instagram, Threads) на месяц</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>После спринта - Amphis за $150/мес навсегда (обычная цена $250/мес)</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span class="todo">[[ПОДСТАВИТЬ: доступ к ферме для тестов / другие бонусы]]</span></div>
+      </div>
+
+      <div class="price-value">Только софт отдельно стоит $250/мес</div>
+
+      <div class="seats" style="margin-bottom:20px;">
+        <div class="seats-row"><span>Занято мест</span><span><span class="seats-taken-mirror">0</span> / 20</span></div>
+        <div class="seats-bar"><div class="seats-fill seats-fill-mirror" style="width:0%"></div></div>
+      </div>
+
+      <a href="#" class="btn btn-accent btn-full cta-btn" id="priceCta">Записаться на эфир</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 9: LIVE STREAM ==================== -->
+<section class="section stream-section" id="stream">
+  <div class="container" style="text-align:center;">
+    <div class="fade-up" id="streamBlock">
+      <h2 style="margin-bottom:20px;">Хочешь узнать подробнее? Приходи на&nbsp;эфир</h2>
+      <p style="color:var(--text-muted); font-size:1.05rem; max-width:520px; margin:0 auto 32px;">
+        27 ноября в&nbsp;19:00 МСК покажу ферму изнутри: что мы уже сделали, к&nbsp;чему пришли и&nbsp;чему научились. Расскажу, как будет устроен спринт, и&nbsp;отвечу на&nbsp;вопросы. Участники эфира первыми получат оффер со&nbsp;скидкой Черной пятницы и&nbsp;бонусы.
+      </p>
+      <div style="margin-bottom:28px;">
+        <div class="timer-label" id="streamTimerLabel">До эфира</div>
+        <div class="timer" id="streamTimer">
+          <div class="timer-digit"><span id="std">00</span><span>дн</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-digit"><span id="sth">00</span><span>ч</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-digit"><span id="stm">00</span><span>мин</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-digit"><span id="sts">00</span><span>сек</span></div>
+        </div>
+      </div>
+      <a href="#" class="btn btn-accent cta-btn" id="streamCta">Записаться на эфир</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BLOCK 10: FAQ ==================== -->
+<section class="section" id="faq">
+  <div class="container-sm">
+    <h2 class="fade-up">Частые вопросы</h2>
+    <div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Нужен ли опыт?<span class="plus">+</span></button><div class="faq-a"><p>Нужна хотя бы одна модель или страница.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Сколько времени в&nbsp;день?<span class="plus">+</span></button><div class="faq-a"><p>1-2 часа.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Нужны ли дополнительные расходы (прокси, аккаунты)?<span class="plus">+</span></button><div class="faq-a"><p><span class="todo">[[ПОДСТАВИТЬ]]</span></p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Подойдёт ли, если я работаю на Mac?<span class="plus">+</span></button><div class="faq-a"><p><span class="todo">[[ПОДСТАВИТЬ]]</span></p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что если я пропущу созвон?<span class="plus">+</span></button><div class="faq-a"><p>Будет запись.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли возврат?<span class="plus">+</span></button><div class="faq-a"><p><span class="todo">[[ПОДСТАВИТЬ]]</span></p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Как оплатить?<span class="plus">+</span></button><div class="faq-a"><p>Напиши мне в Telegram, оплата в личке.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли гарантия результата?<span class="plus">+</span></button><div class="faq-a"><p>Честно: нет. Есть система, софт и&nbsp;разбор твоих цифр каждую неделю.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="brand">Alexeev Only</div>
+  <div class="links">
+    <a href="https://t.me/MY_USERNAME" target="_blank" rel="noopener">Telegram</a>
+    <span class="todo" style="font-size:0.8rem;">[[ПОДСТАВИТЬ: YouTube ссылка]]</span>
+  </div>
+</footer>
+
+<!-- ==================== STICKY CTA (mobile) ==================== -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#" class="btn btn-accent btn-full cta-btn" id="stickyCta-btn" style="padding:14px 20px; font-size:1rem;">Записаться на эфир</a>
+</div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+// ---- CONFIG ----
+const CONFIG = {
+  streamDate: "2026-11-27T19:00:00+03:00",
+  salesDeadline: "2026-11-30T23:59:00+03:00",
+  sprintStart: "30 ноября",
+  seatsTotal: 20,
+  seatsLeft: 20,
+  regularPrice: 450,
+  streamPrice: 300,
+  botLink: "https://t.me/BOT_USERNAME?start=sprint",
+  dmLink: "https://t.me/MY_USERNAME",
+  monthlyVisits: 400000000,
+  socialShare: { x: 0, instagram: 0, threads: 0, reddit: 0 },
+};
+
+// ---- PHASE ----
+function getPhase() {
+  const now = Date.now();
+  if (now < new Date(CONFIG.streamDate).getTime()) return 'pre';
+  if (now < new Date(CONFIG.salesDeadline).getTime()) return 'post';
+  return 'closed';
+}
+
+// ---- TIMER ----
+function updateTimers() {
+  const phase = getPhase();
+  const target = phase === 'pre' ? CONFIG.streamDate : CONFIG.salesDeadline;
+  const diff = Math.max(0, new Date(target).getTime() - Date.now());
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const pad = n => String(n).padStart(2, '0');
+
+  const label = phase === 'pre' ? 'До эфира' : phase === 'post' ? 'До конца продаж' : '';
+
+  ['', 'st'].forEach(prefix => {
+    const dl = document.getElementById(prefix + 'timerLabel') || document.getElementById((prefix || 'timer') + 'Label');
+  });
+
+  document.getElementById('td').textContent = pad(d);
+  document.getElementById('th').textContent = pad(h);
+  document.getElementById('tm').textContent = pad(m);
+  document.getElementById('ts').textContent = pad(s);
+  document.getElementById('timerLabel').textContent = label;
+
+  document.getElementById('std').textContent = pad(d);
+  document.getElementById('sth').textContent = pad(h);
+  document.getElementById('stm').textContent = pad(m);
+  document.getElementById('sts').textContent = pad(s);
+  document.getElementById('streamTimerLabel').textContent = label;
+
+  if (phase === 'closed') {
+    document.getElementById('timer').style.display = 'none';
+    document.getElementById('timerLabel').style.display = 'none';
+    document.getElementById('streamTimer').style.display = 'none';
+    document.getElementById('streamTimerLabel').style.display = 'none';
+  }
+}
+
+// ---- CTA LINKS ----
+function updateCTAs() {
+  const phase = getPhase();
+  const labels = { pre: 'Записаться на эфир', post: 'Занять место', closed: 'Набор закрыт · записаться в следующий поток' };
+  const links = { pre: CONFIG.botLink, post: CONFIG.dmLink, closed: CONFIG.botLink };
+  document.querySelectorAll('.cta-btn').forEach(btn => {
+    btn.textContent = labels[phase];
+    btn.href = links[phase];
+    btn.target = '_blank';
+    btn.rel = 'noopener noreferrer';
+    if (phase === 'closed') {
+      btn.classList.remove('btn-accent');
+      btn.classList.add('btn-outline');
+    }
+  });
+}
+
+// ---- PRICING PHASE ----
+function updatePricing() {
+  const phase = getPhase();
+  const block = document.getElementById('priceBlock');
+  const note = document.getElementById('priceNote');
+  const main = document.getElementById('priceMain');
+
+  if (phase === 'post') {
+    block.innerHTML = '<span class="price-old">$' + CONFIG.regularPrice + '</span><span class="price-new accent">$' + CONFIG.streamPrice + '</span><div class="price-note">до 30 ноября</div>';
+  } else if (phase === 'closed') {
+    main.textContent = '$' + CONFIG.regularPrice;
+    note.textContent = 'Набор в текущий поток закрыт';
+  }
+}
+
+// ---- STREAM BLOCK PHASE ----
+function updateStream() {
+  const phase = getPhase();
+  const block = document.getElementById('streamBlock');
+  if (phase === 'post') {
+    block.innerHTML = '<h2 style="margin-bottom:20px;">Запись эфира - в боте</h2><p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:28px;">Эфир уже прошёл, но запись доступна. Смотри и принимай решение.</p><a href="' + CONFIG.botLink + '" class="btn btn-outline" target="_blank" rel="noopener">Смотреть запись в боте</a>';
+  } else if (phase === 'closed') {
+    block.innerHTML = '<h2 style="margin-bottom:20px;">Эфир прошёл</h2><p style="color:var(--text-muted); font-size:1.05rem;">Набор в текущий поток закрыт. Запишись, чтобы узнать о следующем.</p>';
+  }
+}
+
+// ---- SEATS ----
+function updateSeats() {
+  const taken = CONFIG.seatsTotal - CONFIG.seatsLeft;
+  const pct = (taken / CONFIG.seatsTotal * 100).toFixed(1);
+  document.querySelectorAll('.seats-taken-mirror').forEach(el => el.textContent = taken);
+  document.querySelectorAll('.seats-fill-mirror').forEach(el => el.style.width = pct + '%');
+  document.getElementById('seatsTaken').textContent = taken;
+  document.getElementById('seatsFill').style.width = pct + '%';
+}
+
+// ---- TRAFFIC COUNTER ----
+const perSecond = CONFIG.monthlyVisits / (30 * 24 * 3600);
+const trafficStart = Date.now();
+function updateTraffic() {
+  const elapsed = (Date.now() - trafficStart) / 1000;
+  const jitter = Math.sin(elapsed * 2.1) * 0.3 + Math.cos(elapsed * 3.7) * 0.2;
+  const total = Math.floor(perSecond * elapsed + jitter);
+  document.getElementById('totalVisitors').textContent = total.toLocaleString('ru-RU');
+
+  const shares = CONFIG.socialShare;
+  const hasShares = Object.values(shares).reduce((a, b) => a + b, 0) > 0;
+  if (hasShares) {
+    const ids = { x: ['barX', 'numX'], instagram: ['barIg', 'numIg'], threads: ['barTh', 'numTh'], reddit: ['barRd', 'numRd'] };
+    for (const [key, [barId, numId]] of Object.entries(ids)) {
+      const share = shares[key] || 0;
+      document.getElementById(barId).style.width = (share * 100) + '%';
+      document.getElementById(numId).textContent = Math.floor(total * share).toLocaleString('ru-RU');
+    }
+  }
+}
+
+// ---- FAQ ----
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a => { a.classList.remove('open'); a.previousElementSibling.classList.remove('open'); });
+  if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+}
+
+// ---- STICKY CTA ----
+function updateSticky() {
+  const heroBottom = document.getElementById('hero').getBoundingClientRect().bottom;
+  document.getElementById('stickyCta').classList.toggle('visible', heroBottom < 0);
+}
+
+// ---- SCROLL ANIMATIONS ----
+function initScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1, rootMargin: '-40px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+}
+
+// ---- INIT ----
+function init() {
+  updateTimers();
+  updateCTAs();
+  updatePricing();
+  updateStream();
+  updateSeats();
+  updateTraffic();
+  initScrollAnimations();
+
+  setInterval(updateTimers, 1000);
+  setInterval(() => { updateCTAs(); }, 60000);
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) { requestAnimationFrame(() => { updateSticky(); ticking = false; }); ticking = true; }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  function tickTraffic() { updateTraffic(); requestAnimationFrame(tickTraffic); }
+  requestAnimationFrame(tickTraffic);
+}
+
+if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+</script>
+</body>
+</html>
