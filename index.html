@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Спринт по трафику · 30 дней · Alexeev Only</title>
-<meta name="description" content="30 дней практики на ферме аккаунтов в X, Threads и Reddit. Созвоны каждый понедельник, наш софт и цель — 100 лидов в день.">
+<meta name="description" content="Научись приводить трафик на OnlyFans за 30 дней. Спринт для владельцев агентств: ферма аккаунтов, софт и созвоны каждый понедельник.">
 <meta property="og:title" content="Спринт по трафику · Alexeev Only">
 <meta property="og:description" content="30 дней совместной работы над трафиком для OnlyFans-агентств.">
 <meta property="og:type" content="website">
@@ -306,6 +306,39 @@ h2 {
   font-size: 0.7rem; line-height: 1.45;
   color: rgba(161,161,170,0.65); margin-top: 12px;
 }
+.grad-text {
+  background: linear-gradient(90deg, #FDBA74, #F97316 55%, #FB923C);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.traffic-outro { max-width: 560px; margin: 8px auto 0; }
+.traffic-line1 {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: clamp(1.15rem, 3.4vw, 1.5rem); line-height: 1.35;
+  margin-bottom: 14px;
+}
+.traffic-line2 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(1.45rem, 4.6vw, 2rem); line-height: 1.25;
+}
+
+/* ---- PAIN ---- */
+.pain-lead {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(1.4rem, 4.4vw, 1.9rem);
+}
+.pain-list { list-style: none; margin: 16px 0 32px; }
+.pain-list li {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+  font-size: 1.05rem; line-height: 1.5;
+}
+.pain-list li::before {
+  content: ''; width: 8px; height: 8px; margin-top: 9px; flex-shrink: 0;
+  border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 8px rgba(249,115,22,0.5);
+}
+.pain-outro { font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); }
+.pain-outro strong { color: var(--text); }
 
 /* ---- STORY (block 3) ---- */
 .problem-card {
@@ -317,6 +350,17 @@ h2 {
   margin-bottom: 10px;
 }
 .problem-card .x-mark { color: var(--accent); font-size: 1.2rem; flex-shrink: 0; line-height: 1.4; }
+.problem-card strong { color: var(--text); }
+.story-text p { font-size: 1.1rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 18px; }
+.story-text strong { color: var(--text); }
+.loss-callout {
+  margin-top: 16px; padding: 20px; text-align: center;
+  background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.28);
+  border-radius: var(--radius);
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: clamp(1.05rem, 3vw, 1.25rem); line-height: 1.4;
+}
+.loss-callout b { color: #F87171; font-size: 1.35em; white-space: nowrap; }
 
 .timeline { position: relative; padding-left: 28px; margin: 40px 0; }
 .timeline::before {
@@ -344,7 +388,22 @@ h2 {
   display: grid; grid-template-columns: 1fr; gap: 12px;
   margin-bottom: 40px;
 }
-@media (min-width: 500px) { .steps-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 500px) {
+  .steps-grid { grid-template-columns: 1fr 1fr; }
+  .step-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+.how-intro { font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 20px; }
+.how-intro strong { color: var(--text); }
+
+/* ---- INVITE ---- */
+.invite-card {
+  text-align: center; padding: 36px 24px;
+  background: linear-gradient(135deg, rgba(249,115,22,0.14), rgba(249,115,22,0.03));
+  border: 1px solid rgba(249,115,22,0.28);
+  border-radius: var(--radius);
+}
+.invite-card h2 { margin-bottom: 14px; }
+.invite-card p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.65; margin: 0 auto 24px; max-width: 480px; }
 
 .step-card {
   background: var(--surface);
@@ -617,44 +676,63 @@ footer .links a:hover { color: var(--accent); }
       <p class="chart-source" id="chartSource"></p>
     </div>
 
-    <p class="fade-up" style="font-family:var(--font-heading); font-weight:700; font-size:clamp(1.1rem,3vw,1.4rem); max-width:500px; margin:0 auto 16px;">Это люди, которые прямо сейчас ищут, на&nbsp;кого подписаться. Вопрос&nbsp;- придут&nbsp;ли они к&nbsp;твоим моделям</p>
+    <div class="traffic-outro fade-up">
+      <p class="traffic-line1">Это люди, которые прямо сейчас ищут, на&nbsp;кого подписаться.</p>
+      <p class="traffic-line2 grad-text">Вопрос&nbsp;- придут&nbsp;ли они к&nbsp;твоим моделям?</p>
+    </div>
+  </div>
+</section>
 
+<!-- ==================== PAIN ==================== -->
+<section class="section" id="pain">
+  <div class="container-sm">
+    <p class="pain-lead fade-up">Если ты:</p>
+    <ul class="pain-list fade-up">
+      <li>Ведёшь соцсети моделей, а&nbsp;новых подписчиков на&nbsp;OnlyFans нет</li>
+      <li>Выкладываешь контент каждый день, а&nbsp;охваты не&nbsp;растут</li>
+      <li>Не понимаешь, как устроены алгоритмы соцсетей и&nbsp;почему аккаунты банятся</li>
+      <li>Не знаешь, откуда сейчас брать трафик</li>
+      <li>Платишь подрядчикам за&nbsp;трафик, а&nbsp;он не&nbsp;окупается</li>
+      <li>Держишь всю аудиторию модели на&nbsp;одном аккаунте и&nbsp;боишься, что модель уйдёт</li>
+    </ul>
+    <p class="pain-outro fade-up"><strong>Значит, ты сейчас там&nbsp;же, где мы были в&nbsp;начале года.</strong> Дочитай эту страницу до&nbsp;конца, и&nbsp;я&nbsp;расскажу, как мы из&nbsp;этого вышли.</p>
   </div>
 </section>
 
 <!-- ==================== BLOCK 3: OUR STORY ==================== -->
 <section class="section" id="story">
   <div class="container">
-    <h2 class="fade-up">Наша история</h2>
-    <p class="fade-up" style="font-size:1.1rem; color:var(--text-muted); margin-bottom:32px; line-height:1.7;">
-      Я&nbsp;- Валерий Алексеев. У&nbsp;меня своё OF-агентство: <span class="todo">[[ПОДСТАВИТЬ: сколько моделей, оборот]]</span>. Мы сталкиваемся с&nbsp;тем же, что и&nbsp;ты.
-    </p>
-
-    <div class="fade-up">
-      <div class="problem-card"><span class="x-mark">✕</span><span>Instagram для адалта фактически закрыт&nbsp;- у&nbsp;нас его забанили в&nbsp;июле 2026.</span></div>
-      <div class="problem-card"><span class="x-mark">✕</span><span>Теневые баны в&nbsp;X и&nbsp;Reddit режут охваты в&nbsp;разы.</span></div>
-      <div class="problem-card"><span class="x-mark">✕</span><span>Один аккаунт = одна точка отказа: бан&nbsp;- и&nbsp;поток подписчиков на&nbsp;ноль.</span></div>
-      <div class="problem-card"><span class="x-mark">✕</span><span>Без трафика чатеры сидят без диалогов, а&nbsp;модели уходят.</span></div>
-      <div class="problem-card"><span class="x-mark">✕</span><span class="todo">[[ПОДСТАВИТЬ: сколько потеряли за год]]</span></div>
+    <div class="story-text fade-up">
+      <p>Меня зовут <strong>Валерий</strong>, у&nbsp;меня своё OnlyFans-агентство. Сейчас у&nbsp;нас <strong>6&nbsp;моделей и&nbsp;оборот от&nbsp;$10&nbsp;000 в&nbsp;месяц</strong>.</p>
+      <p>И&nbsp;мы, как и&nbsp;все агентства, почти каждый месяц упираемся в&nbsp;одни и&nbsp;те&nbsp;же проблемы с&nbsp;трафиком. А&nbsp;с&nbsp;начала 2026 года большинство соцсетей начали <strong>закручивать гайки</strong>:</p>
     </div>
 
-    <p class="fade-up" style="font-family:var(--font-heading); font-weight:800; font-size:clamp(1.3rem,4vw,1.7rem); text-align:center; margin:48px 0 32px;">Но выход есть</p>
+    <div class="fade-up">
+      <div class="problem-card"><span class="x-mark">✕</span><span>За&nbsp;2026 год мы потеряли <strong>12&nbsp;аккаунтов</strong> с&nbsp;суммарной аудиторией больше <strong>500&nbsp;000 подписчиков</strong></span></div>
+      <div class="problem-card"><span class="x-mark">✕</span><span>Instagram режет охваты теневыми банами</span></div>
+      <div class="problem-card"><span class="x-mark">✕</span><span>X урезал нам охваты в&nbsp;разы</span></div>
+      <div class="problem-card"><span class="x-mark">✕</span><span>Держать всю аудиторию на&nbsp;одном большом аккаунте стало небезопасно</span></div>
+      <div class="problem-card"><span class="x-mark">✕</span><span>Наши чаттеры всё чаще работают со&nbsp;старой базой, а&nbsp;не&nbsp;с&nbsp;новой аудиторией</span></div>
+      <div class="loss-callout">В&nbsp;итоге за&nbsp;этот год мы потеряли<br><b>~27% выручки</b></div>
+    </div>
+
+    <p class="fade-up grad-text" style="font-family:var(--font-heading); font-weight:800; font-size:clamp(1.5rem,4.6vw,2rem); text-align:center; margin:56px 0 28px;">Но&nbsp;мы нашли выход</p>
 
     <div class="timeline fade-up">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-date">20 сентября</div>
-        <p style="color:var(--text-muted);">Запустили ферму в&nbsp;X (~27 аккаунтов постоянно) + Reddit</p>
+        <p style="color:var(--text-muted);">Запустили ферму в&nbsp;X&nbsp;- около 30&nbsp;аккаунтов</p>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-date">Результат</div>
-        <p><span class="todo">[[ПОДСТАВИТЬ: что получили, как держим планку]]</span></p>
+        <p><span class="todo">[[ПОДСТАВИТЬ: сколько заработали на&nbsp;ферме]]</span></p>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">Сейчас</div>
-        <p style="color:var(--text-muted);">Видим стратегию и&nbsp;зовём тебя проверить её&nbsp;вместе</p>
+        <div class="timeline-date">Что мы поняли</div>
+        <p style="color:var(--text-muted);">С&nbsp;ростом нейросетей автоматизация вышла на&nbsp;первое место. Сейчас работает не&nbsp;один большой аккаунт, а&nbsp;<strong style="color:var(--text);">большая сетка аккаунтов на&nbsp;софте и&nbsp;автоматизации</strong>.</p>
       </div>
     </div>
 
@@ -667,13 +745,16 @@ footer .links a:hover { color: var(--accent); }
   <div class="container">
     <h2 class="fade-up">Что такое спринт и&nbsp;как он устроен</h2>
 
-    <div class="info-banner fade-up">Это не курс с&nbsp;записями. Программы с&nbsp;уроками нет&nbsp;- есть 30&nbsp;дней работы и&nbsp;отчётность.</div>
+    <p class="how-intro fade-up"><strong>Спринт</strong>&nbsp;- одна из&nbsp;базовых механик, которую я&nbsp;забрал из&nbsp;бизнес-сообщества. Цель простая: за&nbsp;минимальное количество дней освоить максимум навыков и&nbsp;заработать максимум денег.</p>
+
+    <div class="info-banner fade-up">Это не&nbsp;классический курс с&nbsp;записями. Здесь нет программы с&nbsp;уроками.</div>
 
     <div class="steps-grid">
-      <div class="step-card fade-up"><div class="step-num">01</div><h3>Получаешь ферму и&nbsp;софт</h3><p>Запускаешь трафик на свою модель</p></div>
-      <div class="step-card fade-up"><div class="step-num">02</div><h3>Работаешь неделю</h3><p>Ведёшь аккаунты, публикуешь контент, собираешь лидов</p></div>
-      <div class="step-card fade-up"><div class="step-num">03</div><h3>Понедельник&nbsp;- созвон</h3><p>Каждый показывает отчёт: сколько аккаунтов, публикаций, лидов</p></div>
-      <div class="step-card fade-up"><div class="step-num">04</div><h3>Разбор и&nbsp;оптимизация</h3><p>Забираем то, что работает у&nbsp;лучших, правим то, что не&nbsp;работает</p></div>
+      <div class="step-card fade-up"><div class="step-num">01</div><h3>Осваиваешь системные навыки</h3><p>Разбираешься, как работают платформы и&nbsp;их&nbsp;алгоритмы</p></div>
+      <div class="step-card fade-up"><div class="step-num">02</div><h3>Получаешь ферму и&nbsp;софт</h3><p>Запускаешь трафик на&nbsp;свою модель</p></div>
+      <div class="step-card fade-up"><div class="step-num">03</div><h3>Работаешь неделю</h3><p>Ведёшь аккаунты, публикуешь контент, собираешь лидов</p></div>
+      <div class="step-card fade-up"><div class="step-num">04</div><h3>Понедельник&nbsp;- созвон</h3><p>Делишься отчётом: сколько аккаунтов, публикаций и&nbsp;лидов</p></div>
+      <div class="step-card fade-up"><div class="step-num">05</div><h3>Разбор полётов</h3><p>Анализируем проверенные гипотезы, забираем лучшее и&nbsp;правим то, что уже не&nbsp;работает</p></div>
     </div>
 
     <div class="leaderboard fade-up">
@@ -695,23 +776,23 @@ footer .links a:hover { color: var(--accent); }
 <!-- ==================== BLOCK 5: FOR WHOM ==================== -->
 <section class="section" id="whom" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="container">
-    <h2 class="fade-up">Для кого / не для кого</h2>
+    <h2 class="fade-up">Для кого подойдёт спринт</h2>
     <div class="two-cols">
       <div class="list-card fade-up">
-        <h3 class="accent">Для тебя, если:</h3>
+        <h3 class="accent">Подойдёт, если:</h3>
         <ul>
-          <li><span class="mark mark-plus">+</span>У тебя уже есть модель или агентство</li>
-          <li><span class="mark mark-plus">+</span>Не умеешь стабильно вести трафик или упёрся в&nbsp;его потолок</li>
-          <li><span class="mark mark-plus">+</span>Не понимаешь, как устроены алгоритмы соцсетей и&nbsp;почему аккаунты улетают в&nbsp;бан</li>
+          <li><span class="mark mark-plus">+</span>У&nbsp;тебя уже есть модели или агентство</li>
+          <li><span class="mark mark-plus">+</span>Не&nbsp;умеешь стабильно вести трафик или упёрся в&nbsp;его потолок</li>
+          <li><span class="mark mark-plus">+</span>Не&nbsp;понимаешь, как устроены алгоритмы соцсетей и&nbsp;почему аккаунты улетают в&nbsp;бан</li>
           <li><span class="mark mark-plus">+</span>Готов уделять 1-2 часа в&nbsp;день</li>
-          <li><span class="mark mark-plus">+</span>Хочешь считать цифры, а&nbsp;не верить</li>
+          <li><span class="mark mark-plus">+</span>Хочешь научиться считать рентабельность трафика и&nbsp;не&nbsp;надеяться на&nbsp;подрядчиков</li>
         </ul>
       </div>
       <div class="list-card fade-up">
-        <h3>Не для тебя, если:</h3>
+        <h3>Не подойдёт, если:</h3>
         <ul>
           <li><span class="mark mark-minus">−</span>Ищешь пассивный доход без работы</li>
-          <li><span class="mark mark-minus">−</span>Ещё нет ни&nbsp;одной модели</li>
+          <li><span class="mark mark-minus">−</span>У&nbsp;тебя нет моделей</li>
           <li><span class="mark mark-minus">−</span>Ждёшь гарантий заработка</li>
         </ul>
       </div>
@@ -749,6 +830,17 @@ footer .links a:hover { color: var(--accent); }
       </div>
     </div>
     <p style="text-align:center; font-size:0.75rem; color:var(--text-muted); margin-top:12px;">Свайпай для просмотра →</p>
+  </div>
+</section>
+
+<!-- ==================== INVITE ==================== -->
+<section class="section" id="invite">
+  <div class="container-sm">
+    <div class="invite-card fade-up">
+      <h2>Не&nbsp;уверен, что формат тебе подходит?</h2>
+      <p>Приглашаю тебя на&nbsp;эфир. Поделюсь нашими результатами и&nbsp;расскажу фишки, которые мы с&nbsp;командой уже успели выяснить. После эфира будет проще понять, твоё это или нет.</p>
+      <a href="#" class="btn btn-accent cta-btn" id="inviteCta">Записаться на&nbsp;эфир</a>
+    </div>
   </div>
 </section>
 
@@ -931,6 +1023,7 @@ function updatePricing() {
 function updateStream() {
   const phase = getPhase();
   const block = document.getElementById('streamBlock');
+  if (phase !== 'pre') document.getElementById('invite').style.display = 'none';
   if (phase === 'post') {
     block.innerHTML = '<h2 style="margin-bottom:20px;">Запись эфира - в боте</h2><p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:28px;">Эфир уже прошёл, но запись доступна. Смотри и принимай решение.</p><a href="' + CONFIG.botLink + '" class="btn btn-outline" target="_blank" rel="noopener">Смотреть запись в боте</a>';
   } else if (phase === 'closed') {
