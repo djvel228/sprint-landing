@@ -584,9 +584,11 @@ h2 {
   padding: 12px 14px; border-radius: var(--radius-sm);
   background: rgba(255,255,255,0.04); border: 1px solid var(--border);
 }
-.price-value {
-  text-align: center; font-size: 0.85rem; color: var(--text-muted);
-  font-style: italic; margin-bottom: 24px;
+.price-included {
+  text-align: center; margin-bottom: 24px; padding: 14px 16px;
+  background: var(--accent-glow); border: 1px solid rgba(249,115,22,0.3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--accent);
 }
 
 /* ---- STREAM (block 9) ---- */
@@ -915,14 +917,13 @@ footer .links a:hover { color: var(--accent); }
         <div class="check-item"><span class="check-icon">✓</span><span>Участие в спринте 30 дней, старт 30 ноября</span></div>
         <div class="check-item"><span class="check-icon">✓</span><span>Созвоны каждый понедельник с разбором твоих цифр</span></div>
         <div class="check-item"><span class="check-icon">✓</span><span>Закрытый чат участников</span></div>
-        <div class="check-item"><span class="check-icon">✓</span><span>Доступ к нашему софту на 3 платформы (X, Instagram, Threads) на месяц</span></div>
-        <div class="check-item"><span class="check-icon">✓</span><span>После спринта — софт за $150/мес навсегда (обычная цена $250/мес)</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Доступ к&nbsp;нашему софту для X, Instagram и&nbsp;Threads на&nbsp;весь спринт</span></div>
         <div class="check-item"><span class="check-icon">✓</span><span class="todo">[[ПОДСТАВИТЬ: доступ к ферме для тестов / другие бонусы]]</span></div>
       </div>
 
       <div class="price-extra">Аккаунты и&nbsp;прокси закупаешь сам&nbsp;— <span class="todo">[[ПОДСТАВИТЬ: ориентир расходов]]</span></div>
 
-      <div class="price-value">Только софт отдельно стоит $250/мес</div>
+      <div class="price-included">Софт уже входит в&nbsp;стоимость участия в&nbsp;спринте</div>
 
       <div class="seats" style="margin-bottom:20px;">
         <div class="seats-left">Осталось <b id="seatsLeftNum">20</b> из&nbsp;<span id="seatsTotalNum">20</span> мест</div>
@@ -973,7 +974,7 @@ footer .links a:hover { color: var(--accent); }
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Чьи аккаунты я буду вести?<span class="plus">+</span></button><div class="faq-a"><p>Свои: закупаешь их сам, мы показываем, какие и&nbsp;как настроить.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что если я пропущу созвон?<span class="plus">+</span></button><div class="faq-a"><p>Будет запись.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли возврат?<span class="plus">+</span></button><div class="faq-a"><p><span class="todo">[[ПОДСТАВИТЬ]]</span></p></div></div>
-      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что будет после спринта?<span class="plus">+</span></button><div class="faq-a"><p>Остаёшься с&nbsp;рабочей схемой и&nbsp;софтом за&nbsp;$150/мес навсегда.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что будет после спринта?<span class="plus">+</span></button><div class="faq-a"><p>Остаёшься с&nbsp;рабочей схемой, которую уже умеешь запускать сам.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Как оплатить?<span class="plus">+</span></button><div class="faq-a"><p>Напиши мне в Telegram, оплата в личке.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли гарантия результата?<span class="plus">+</span></button><div class="faq-a"><p>Честно: нет. Есть система, софт и&nbsp;разбор твоих цифр каждую неделю.</p></div></div>
     </div>
