@@ -611,9 +611,9 @@ footer .links a:hover { color: var(--accent); }
 <section class="section traffic-section" id="traffic">
   <div class="container" style="text-align:center;">
     <p class="fade-up" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:12px;">Прямо сейчас</p>
-    <p class="fade-up" style="color:var(--text-muted); font-size:1.1rem; margin-bottom:8px;">Пока ты читаешь эту страницу, на OnlyFans зашло:</p>
+    <p class="fade-up" style="color:var(--text-muted); font-size:1.1rem; margin-bottom:8px;">На OnlyFans заходит:</p>
     <div class="traffic-big fade-up" id="totalVisitors">0</div>
-    <p class="fade-up" style="color:var(--text-muted); font-size:1.1rem; margin-bottom:32px;">человек</p>
+    <p class="fade-up" style="color:var(--text-muted); font-size:1.1rem; margin-bottom:32px;">человек в час</p>
 
     <div class="chart-wrap fade-up">
       <div class="chart-head">
@@ -990,7 +990,16 @@ const BAR_SERIES = [
 const BARS_STEP = niceStep(Math.max(...BAR_SERIES.map(s => s.max)) / 6);
 const BARS_TICKS = Math.ceil(Math.max(...BAR_SERIES.map(s => s.max)) * 1.02 / BARS_STEP);
 const BARS_Y_MAX = BARS_STEP * BARS_TICKS;
-let visitorsTotal = 0, totalRateK = 1, lastFrame = 0, totalEl;
+const TOTAL_FLOW = { avg: TOTAL_PER_HOUR, min: TOTAL_PER_HOUR * 0.9, max: TOTAL_PER_HOUR * 1.1, cur: TOTAL_PER_HOUR, target: TOTAL_PER_HOUR, nextAt: 0 };
+let lastFrame = 0, totalEl;
+
+function stepFlow(s, now, dt) {
+  if (now >= s.nextAt) {
+    s.target = s.target * 0.4 + (s.min + Math.random() * (s.max - s.min)) * 0.6;
+    s.nextAt = now + 600 + Math.random() * 1100;
+  }
+  s.cur += (s.target - s.cur) * (1 - Math.exp(-dt * 3));
+}
 
 function niceStep(v) {
   const p = Math.pow(10, Math.floor(Math.log10(v)));
@@ -1033,18 +1042,13 @@ function trafficFrame() {
   lastFrame = now;
 
   BAR_SERIES.forEach(s => {
-    if (now >= s.nextAt) {
-      s.target = s.target * 0.4 + (s.min + Math.random() * (s.max - s.min)) * 0.6;
-      s.nextAt = now + 600 + Math.random() * 1100;
-    }
-    s.cur += (s.target - s.cur) * (1 - Math.exp(-dt * 3));
+    stepFlow(s, now, dt);
     s.bar.style.height = (s.cur / BARS_Y_MAX) * 100 + '%';
     s.val.textContent = fmtNum(s.cur);
   });
 
-  totalRateK += (Math.random() - 0.5) * 0.08 + (1 - totalRateK) * 0.02;
-  visitorsTotal += (TOTAL_PER_HOUR / 3600) * totalRateK * dt;
-  totalEl.textContent = Math.floor(visitorsTotal).toLocaleString('ru-RU');
+  stepFlow(TOTAL_FLOW, now, dt);
+  totalEl.textContent = fmtNum(TOTAL_FLOW.cur);
 
   requestAnimationFrame(trafficFrame);
 }
