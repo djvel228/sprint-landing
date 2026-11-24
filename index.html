@@ -899,7 +899,7 @@ h2 {
 
       <div class="price-reveal" id="priceReveal">
         <div class="reveal-main">Итоговую цену первого потока раскрою на&nbsp;эфире 27&nbsp;ноября</div>
-        <div class="reveal-sub">Эфир проходит в&nbsp;Черную пятницу&nbsp;— для участников будут специальные условия</div>
+        <div class="reveal-sub">Эфир проходит в&nbsp;Чёрную пятницу&nbsp;— для участников будут специальные условия</div>
       </div>
 
       <div class="seats" style="margin-bottom:16px;">
@@ -950,7 +950,6 @@ h2 {
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Подойдёт ли, если я работаю на Mac?<span class="plus">+</span></button><div class="faq-a"><p>Софт работает на&nbsp;Windows. На&nbsp;Mac запускаешь его на&nbsp;арендованном Windows-сервере&nbsp;— мы сами так работаем.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Чьи аккаунты я буду вести?<span class="plus">+</span></button><div class="faq-a"><p>Свои: закупаешь их сам, мы показываем, какие и&nbsp;как настроить.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что если я пропущу созвон?<span class="plus">+</span></button><div class="faq-a"><p>Будет запись.</p></div></div>
-      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли возврат?<span class="plus">+</span></button><div class="faq-a"><p><span class="todo">[[ПОДСТАВИТЬ]]</span></p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что будет после спринта?<span class="plus">+</span></button><div class="faq-a"><p>Остаёшься с&nbsp;рабочей схемой, которую уже умеешь запускать сам.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Как оплатить?<span class="plus">+</span></button><div class="faq-a"><p>Напиши мне в Telegram, оплата в личке.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли гарантия результата?<span class="plus">+</span></button><div class="faq-a"><p>Честно: нет. Есть система, софт и&nbsp;разбор твоих цифр каждую неделю.</p></div></div>
@@ -976,7 +975,7 @@ const CONFIG = {
   // first-stream price, revealed after the stream
   streamPrice: 300,
   botLink: "https://t.me/bazaonlyfansbot?start=sprint",
-  dmLink: "https://t.me/MY_USERNAME",
+  dmLink: "https://t.me/alexeevonlyy_ass",
   // SimilarWeb / Semrush, onlyfans.com: 305-400M visits/month
   monthlyVisits: 350000000,
   // share of visits referred by each network
@@ -1044,6 +1043,7 @@ function updatePricing() {
     reveal.innerHTML = '<div class="reveal-main">Цена первого потока — <span class="reveal-price">$' + CONFIG.streamPrice + '</span></div><div class="reveal-note">следующий поток будет дороже</div>';
   } else if (phase === 'closed') {
     reveal.innerHTML = '<div class="reveal-main">Набор в первый поток закрыт</div>';
+    document.querySelector('#price .seats').style.display = 'none';
   }
 }
 
