@@ -16,7 +16,7 @@
 
 :root {
   --bg: #09090B;
-  --bg2: #0F0F12;
+  --bg2: #141418;
   --surface: #18181B;
   --surface-hover: #1f1f23;
   --border: #27272A;
@@ -174,20 +174,26 @@ h2 {
   color: var(--text-muted);
   animation: floaty 6s ease-in-out infinite;
 }
-@media (max-width: 767px) { .float-icon { display: none; } }
 .float-icon:nth-child(1) { top: 18%; left: 8%; animation-delay: 0s; }
 .float-icon:nth-child(2) { top: 15%; right: 10%; animation-delay: 1.5s; }
 .float-icon:nth-child(3) { bottom: 25%; left: 6%; animation-delay: 3s; }
 .float-icon:nth-child(4) { bottom: 20%; right: 8%; animation-delay: 4.5s; }
 @keyframes floaty {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.1; }
-  50% { transform: translateY(-16px) scale(1.08); opacity: 0.2; }
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.18; }
+  50% { transform: translateY(-16px) scale(1.08); opacity: 0.32; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .float-icon { animation: none; opacity: 0.12; }
+  .float-icon { animation: none; opacity: 0.22; }
 }
 
 .float-icon svg { width: 44px; height: 44px; }
+@media (max-width: 767px) {
+  .float-icon svg { width: 30px; height: 30px; }
+  .float-icon:nth-child(1) { top: 9%; left: 7%; }
+  .float-icon:nth-child(2) { top: 13%; right: 8%; }
+  .float-icon:nth-child(3) { bottom: 9%; left: 9%; }
+  .float-icon:nth-child(4) { bottom: 12%; right: 7%; }
+}
 
 /* ---- TIMER ---- */
 .timer-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
@@ -253,7 +259,7 @@ h2 {
 .seats-fill { height: 100%; border-radius: 100px; background: var(--accent); transition: width 0.8s; }
 
 /* ---- TRAFFIC COUNTER (block 2) ---- */
-.traffic-section {
+.section.alt {
   background: var(--bg2);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -583,12 +589,6 @@ h2 {
 .reveal-note { font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; }
 
 /* ---- STREAM (block 9) ---- */
-.stream-section {
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
 /* ---- FAQ (block 10) ---- */
 .faq-item { border-bottom: 1px solid var(--border); }
 .faq-q {
@@ -677,7 +677,7 @@ h2 {
 </section>
 
 <!-- ==================== BLOCK 2: TRAFFIC COUNTER ==================== -->
-<section class="section traffic-section" id="traffic">
+<section class="section alt" id="traffic">
   <div class="container" style="text-align:center;">
     <h2 class="fade-up" style="margin-bottom:12px;">Спрос никуда не&nbsp;делся</h2>
     <p class="fade-up" style="color:var(--text-muted); font-size:1.1rem; margin-bottom:8px;">Люди как заходили на&nbsp;OnlyFans из&nbsp;соцсетей, так и&nbsp;заходят:</p>
@@ -730,7 +730,7 @@ h2 {
 </section>
 
 <!-- ==================== BLOCK 3: OUR STORY ==================== -->
-<section class="section" id="story">
+<section class="section alt" id="story">
   <div class="container">
     <a class="story-link story-photo fade-up" href="img/agency-stats.jpg" target="_blank" rel="noopener"><img class="story-img" src="img/agency-stats.jpg" alt="Статистика агентства по моделям" width="2000" height="1180" loading="lazy"></a>
 
@@ -811,7 +811,7 @@ h2 {
 </section>
 
 <!-- ==================== BLOCK 5: FOR WHOM ==================== -->
-<section class="section" id="whom" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<section class="section alt" id="whom">
   <div class="container">
     <h2 class="fade-up">Для кого подойдёт спринт</h2>
     <div class="two-cols">
@@ -853,7 +853,7 @@ h2 {
 </section>
 
 <!-- ==================== BLOCK 7: PAST RESULTS ==================== -->
-<section class="section" id="results" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<section class="section alt" id="results">
   <div class="container">
     <h2 class="fade-up">Результаты прошлого спринта</h2>
     <p class="fade-up" style="text-align:center; color:var(--text-muted); margin-top:-24px; margin-bottom:32px;">Формат спринта уже работал: год назад мы провели спринт по&nbsp;Reddit</p>
@@ -880,7 +880,7 @@ h2 {
 </section>
 
 <!-- ==================== BLOCK 8: PRICING ==================== -->
-<section class="section" id="price">
+<section class="section alt" id="price">
   <div class="container-sm">
     <h2 class="fade-up">Ценность спринта</h2>
     <div class="price-card fade-up">
@@ -913,7 +913,7 @@ h2 {
 </section>
 
 <!-- ==================== BLOCK 9: LIVE STREAM ==================== -->
-<section class="section stream-section" id="stream">
+<section class="section" id="stream">
   <div class="container" style="text-align:center;">
     <div class="fade-up">
       <div id="streamBlock">
@@ -940,7 +940,7 @@ h2 {
 </section>
 
 <!-- ==================== BLOCK 10: FAQ ==================== -->
-<section class="section" id="faq">
+<section class="section alt" id="faq">
   <div class="container-sm">
     <h2 class="fade-up">Частые вопросы</h2>
     <div>
@@ -975,7 +975,7 @@ const CONFIG = {
   valueTotal: 750,
   // first-stream price, revealed after the stream
   streamPrice: 300,
-  botLink: "https://t.me/BOT_USERNAME?start=sprint",
+  botLink: "https://t.me/bazaonlyfansbot?start=sprint",
   dmLink: "https://t.me/MY_USERNAME",
   // SimilarWeb / Semrush, onlyfans.com: 305-400M visits/month
   monthlyVisits: 350000000,
