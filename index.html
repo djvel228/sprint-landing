@@ -397,13 +397,12 @@ h2 {
 }
 .timeline-date { font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; color: var(--accent); margin-bottom: 4px; }
 
-.placeholder-photo {
-  width: 100%; max-width: 320px; aspect-ratio: 4/5; margin: 40px auto 0;
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px;
+.story-img {
+  display: block; width: 100%; height: auto;
+  border-radius: var(--radius); border: 1px solid var(--border);
 }
-.placeholder-wide { max-width: 100%; aspect-ratio: 16/9; }
+.story-link { display: block; }
+.case-img { margin-top: 24px; }
 .story-photo { margin: 0 auto 32px; }
 .case-note { font-size: 0.85rem; line-height: 1.55; color: var(--text-muted); margin-top: -16px; }
 
@@ -538,12 +537,10 @@ h2 {
 .slider-wrap::-webkit-scrollbar { display: none; }
 .slider-track { display: flex; gap: 16px; }
 .slider-card {
-  flex-shrink: 0; width: 280px; aspect-ratio: 4/3;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius);
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px;
+  flex-shrink: 0; display: block; overflow: hidden;
+  background: #000; border: 1px solid var(--border); border-radius: var(--radius);
 }
+.slider-card img { display: block; height: 440px; width: auto; }
 
 /* ---- PRICING (block 8) ---- */
 .price-card {
@@ -617,15 +614,6 @@ h2 {
   .faq-a { transition: none; }
 }
 
-/* ---- FOOTER ---- */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 20px;
-  text-align: center;
-}
-footer .brand { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; }
-footer .links { display: flex; gap: 20px; justify-content: center; font-size: 0.9rem; color: var(--text-muted); }
-footer .links a:hover { color: var(--accent); }
 
 /* ---- STICKY CTA ---- */
 .sticky-cta {
@@ -640,6 +628,7 @@ footer .links a:hover { color: var(--accent); }
 }
 .sticky-cta.visible { transform: translateY(0); }
 @media (min-width: 768px) { .sticky-cta { display: none; } }
+@media (max-width: 767px) { #faq { padding-bottom: 130px; } }
 @media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
 
 /* ---- SCROLL ANIMATIONS ---- */
@@ -743,7 +732,7 @@ footer .links a:hover { color: var(--accent); }
 <!-- ==================== BLOCK 3: OUR STORY ==================== -->
 <section class="section" id="story">
   <div class="container">
-    <div class="placeholder-photo placeholder-wide story-photo fade-up"><span class="todo">[[ПОДСТАВИТЬ: статистика агентства по&nbsp;моделям, горизонтальное фото 16:9]]</span></div>
+    <a class="story-link story-photo fade-up" href="img/agency-stats.jpg" target="_blank" rel="noopener"><img class="story-img" src="img/agency-stats.jpg" alt="Статистика агентства по моделям" width="2000" height="1180" loading="lazy"></a>
 
     <div class="story-text fade-up">
       <p>Меня зовут <strong>Валерий</strong>, у&nbsp;меня своё OnlyFans-агентство. Сейчас у&nbsp;нас <strong>6&nbsp;моделей и&nbsp;оборот от&nbsp;$10&nbsp;000 в&nbsp;месяц</strong>.</p>
@@ -786,7 +775,7 @@ footer .links a:hover { color: var(--accent); }
 
     <p class="case-note fade-up">Пока это один успешный кейс. Именно эту схему мы отдаём участникам и&nbsp;вместе доводим до&nbsp;стабильного результата.</p>
 
-    <div class="placeholder-photo placeholder-wide fade-up"><span class="todo">[[ПОДСТАВИТЬ: фото кейса с&nbsp;результатом, горизонтальное 16:9]]</span></div>
+    <a class="story-link case-img fade-up" href="img/case-x-farm.jpg" target="_blank" rel="noopener"><img class="story-img" src="img/case-x-farm.jpg" alt="Результат кейса фермы в X" width="1732" height="978" loading="lazy"></a>
   </div>
 </section>
 
@@ -871,10 +860,8 @@ footer .links a:hover { color: var(--accent); }
 
     <div class="slider-wrap fade-up">
       <div class="slider-track">
-        <div class="slider-card"><span class="todo" style="text-align:center;">[[ПОДСТАВИТЬ: скрин + результат участника 1]]</span></div>
-        <div class="slider-card"><span class="todo" style="text-align:center;">[[ПОДСТАВИТЬ: скрин + результат участника 2]]</span></div>
-        <div class="slider-card"><span class="todo" style="text-align:center;">[[ПОДСТАВИТЬ: скрин + результат участника 3]]</span></div>
-        <div class="slider-card"><span class="todo" style="text-align:center;">[[ПОДСТАВИТЬ: скрин + результат участника 4]]</span></div>
+        <a class="slider-card" href="img/sprint-report-1.jpg" target="_blank" rel="noopener"><img src="img/sprint-report-1.jpg" alt="Отчёты участников прошлого спринта" width="1071" height="1239" loading="lazy"></a>
+        <a class="slider-card" href="img/sprint-report-2.jpg" target="_blank" rel="noopener"><img src="img/sprint-report-2.jpg" alt="Отчёты участников прошлого спринта" width="989" height="2000" loading="lazy"></a>
       </div>
     </div>
     <p style="text-align:center; font-size:0.75rem; color:var(--text-muted); margin-top:12px;">Свайпай для просмотра →</p>
@@ -970,15 +957,6 @@ footer .links a:hover { color: var(--accent); }
     </div>
   </div>
 </section>
-
-<!-- ==================== FOOTER ==================== -->
-<footer>
-  <div class="brand">Alexeev Only</div>
-  <div class="links">
-    <a href="https://t.me/MY_USERNAME" target="_blank" rel="noopener">Telegram</a>
-    <span class="todo" style="font-size:0.8rem;">[[ПОДСТАВИТЬ: YouTube ссылка]]</span>
-  </div>
-</footer>
 
 <!-- ==================== STICKY CTA (mobile) ==================== -->
 <div class="sticky-cta" id="stickyCta">
