@@ -887,7 +887,7 @@ h2 {
       <h3 class="price-card-title">Что входит в&nbsp;спринт</h3>
       <div class="value-list">
         <div class="value-row"><span>Наша рабочая схема по&nbsp;X</span><b>$300</b></div>
-        <div class="value-row"><span>4&nbsp;созвона с&nbsp;разбором твоих цифр</span><b>$200</b></div>
+        <div class="value-row"><span>5&nbsp;созвонов с&nbsp;разбором твоих цифр</span><b>$200</b></div>
         <div class="value-row"><span>Софт на&nbsp;3&nbsp;платформы на&nbsp;время спринта</span><b>$250</b></div>
         <div class="value-row value-sum"><span>Общая ценность</span><b id="valueTotal">$750</b></div>
       </div>
@@ -950,8 +950,9 @@ h2 {
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Подойдёт ли, если я работаю на Mac?<span class="plus">+</span></button><div class="faq-a"><p>Софт работает на&nbsp;Windows. На&nbsp;Mac запускаешь его на&nbsp;арендованном Windows-сервере&nbsp;— мы сами так работаем.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Чьи аккаунты я буду вести?<span class="plus">+</span></button><div class="faq-a"><p>Свои: закупаешь их сам, мы показываем, какие и&nbsp;как настроить.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что если я пропущу созвон?<span class="plus">+</span></button><div class="faq-a"><p>Будет запись.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли возврат?<span class="plus">+</span></button><div class="faq-a"><p>Нет, возврата нет. Поэтому все вопросы лучше задать на&nbsp;эфире или в&nbsp;личке до&nbsp;оплаты.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Что будет после спринта?<span class="plus">+</span></button><div class="faq-a"><p>Остаёшься с&nbsp;рабочей схемой, которую уже умеешь запускать сам.</p></div></div>
-      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Как оплатить?<span class="plus">+</span></button><div class="faq-a"><p>Напиши мне в Telegram, оплата в личке.</p></div></div>
+      <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Как оплатить?<span class="plus">+</span></button><div class="faq-a"><p>Напиши в&nbsp;Telegram <a href="https://t.me/alexeevonlyy_ass" target="_blank" rel="noopener" style="color:var(--accent)">@alexeevonlyy_ass</a>, оплата в&nbsp;личке.</p></div></div>
       <div class="faq-item fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли гарантия результата?<span class="plus">+</span></button><div class="faq-a"><p>Честно: нет. Есть система, софт и&nbsp;разбор твоих цифр каждую неделю.</p></div></div>
     </div>
   </div>
@@ -970,7 +971,9 @@ const CONFIG = {
   salesDeadline: "2026-11-30T23:59:00+03:00",
   sprintStart: "30 ноября",
   seatsTotal: 20,
-  seatsLeft: 14,
+  // "Осталось" уменьшается на 1 каждый день (МСК) с seatsStartDate до конца продаж
+  seatsLeftStart: 14,
+  seatsStartDate: "2026-11-24",
   valueTotal: 750,
   // first-stream price, revealed after the stream
   streamPrice: 300,
@@ -1063,9 +1066,18 @@ function updateStream() {
 }
 
 // ---- SEATS ----
+function getSeatsLeft() {
+  const day = 86400000;
+  const start = new Date(CONFIG.seatsStartDate + "T00:00:00+03:00").getTime();
+  const until = Math.min(Date.now(), new Date(CONFIG.salesDeadline).getTime());
+  const days = Math.max(0, Math.floor((until - start) / day));
+  return Math.max(1, CONFIG.seatsLeftStart - days);
+}
+
 function updateSeats() {
-  const pct = (CONFIG.seatsLeft / CONFIG.seatsTotal * 100).toFixed(1);
-  document.getElementById('seatsLeftNum').textContent = CONFIG.seatsLeft;
+  const left = getSeatsLeft();
+  const pct = (left / CONFIG.seatsTotal * 100).toFixed(1);
+  document.getElementById('seatsLeftNum').textContent = left;
   document.getElementById('seatsTotalNum').textContent = CONFIG.seatsTotal;
   document.querySelectorAll('.seats-fill-mirror').forEach(el => el.style.width = pct + '%');
 }
