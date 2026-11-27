@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; height: 720px; }
+  body {
+    background: #09090B; color: #FAFAFA; font-family: Inter, sans-serif;
+    position: relative; overflow: hidden; padding: 56px 64px;
+    display: grid; grid-template-columns: 1fr 570px; gap: 40px;
+  }
+  .glow { position: absolute; width: 900px; height: 900px; left: -320px; top: -420px;
+    background: radial-gradient(circle, rgba(249,115,22,0.26), transparent 62%); }
+  .grid { position: absolute; inset: 0; opacity: 0.5;
+    background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 70% at 20% 20%, black, transparent 75%); }
+  .left, .right { position: relative; z-index: 1; }
+  .right { align-self: center; }
+  .left { display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+  .brand svg { width: 56px; height: 56px; }
+  .brand span { font-family: Manrope; font-weight: 800; font-size: 15px; letter-spacing: 0.3em; color: #A1A1AA; }
+  .eyebrow { font-family: Manrope; font-weight: 800; font-size: 20px; letter-spacing: 0.2em; text-transform: uppercase; color: #FB923C; margin-bottom: 14px; }
+  h1 { font-family: Manrope; font-weight: 800; font-size: 76px; line-height: 0.98; letter-spacing: -0.03em; margin-bottom: 22px; }
+  h1 span { background: linear-gradient(90deg, #FDBA74, #F97316 60%, #FB923C); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: 21px; line-height: 1.45; color: #D4D4D8; max-width: 560px; }
+  .chips { display: flex; gap: 10px; margin-top: 22px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 100px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); font-weight: 600; font-size: 16px; }
+  .chip svg { width: 18px; height: 18px; }
+  .seats { margin-top: auto; display: flex; align-items: center; gap: 12px; font-size: 18px; color: #D4D4D8; }
+  .seats b { font-family: Manrope; font-weight: 800; font-size: 26px; color: #FAFAFA; }
+  .seats .dot { width: 10px; height: 10px; border-radius: 50%; background: #F97316; box-shadow: 0 0 12px rgba(249,115,22,0.8); }
+
+  .card { border-radius: 26px; padding: 36px 34px 30px;
+    background: linear-gradient(160deg, rgba(249,115,22,0.14), rgba(24,24,27,0.94) 50%);
+    border: 1px solid rgba(249,115,22,0.35); display: flex; flex-direction: column; }
+  .card h2 { font-family: Manrope; font-weight: 700; font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase; color: #A1A1AA; margin-bottom: 24px; }
+  .item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 26px; }
+  .num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px; background: #F97316; color: #0B0B0E;
+    font-family: Manrope; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: center; }
+  .item b { display: block; font-family: Manrope; font-weight: 700; font-size: 23px; line-height: 1.25; }
+  .item small { display: block; font-size: 16px; color: #A1A1AA; margin-top: 4px; }
+  .price { margin-top: 8px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: flex-end; justify-content: space-between; }
+  .price .now { font-family: Manrope; font-weight: 800; font-size: 72px; line-height: 0.9; color: #F97316; }
+  .price .value { text-align: right; font-size: 16px; color: #A1A1AA; line-height: 1.4; }
+  .price .value b { display: block; font-family: Manrope; font-weight: 800; font-size: 24px; color: #FAFAFA; }
+  .extra { margin-top: 16px; font-size: 15px; color: #A1A1AA; line-height: 1.45; }
+  .extra b { color: #E4E4E7; font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="grid"></div>
+
+  <div class="left">
+    <div class="brand">
+      <svg viewBox="0 0 512 512">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FDBA74"/><stop offset="0.5" stop-color="#F97316"/><stop offset="1" stop-color="#C2410C"/></linearGradient>
+        </defs>
+        <rect x="16" y="16" width="480" height="480" rx="120" fill="url(#bg)"/>
+        <g stroke="#FFFFFF" stroke-linecap="round">
+          <line x1="236" y1="250" x2="292" y2="182" stroke-width="22" opacity="0.6"/>
+          <line x1="178" y1="226" x2="216" y2="180" stroke-width="18" opacity="0.4"/>
+        </g>
+        <polyline points="104,372 204,282 268,330 384,190" fill="none" stroke="#FFFFFF" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M318 168 L412 160 L404 254 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="18" stroke-linejoin="round"/>
+      </svg>
+      <span>ALEXEEV ONLY</span>
+    </div>
+    <div class="eyebrow">Старт 30 ноября · 30 дней</div>
+    <h1>Спринт <span>по&nbsp;трафику</span></h1>
+    <p class="lead">Вместе тестируем связки через наш софт, каждую неделю разбираем цифры и&nbsp;ищем то, что реально залетает.</p>
+    <div class="chips">
+      <span class="chip"><svg viewBox="0 0 24 24" fill="#FAFAFA"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Twitter</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="#FAFAFA"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.265 1.33-3.084.868-.77 2.063-1.237 3.467-1.357l.14-.012c.96-.072 1.834-.035 2.602.108-.09-.52-.274-.975-.559-1.349-.456-.6-1.159-.924-2.09-.964h-.074c-.78.009-1.683.26-2.195.846l-1.504-1.373c.834-.912 2.14-1.482 3.63-1.59l.172-.006c1.542 0 2.77.546 3.651 1.624.773.946 1.197 2.206 1.306 3.747.408.207.79.44 1.146.699 1.166.85 1.995 1.966 2.396 3.228.543 1.712.46 4.387-1.834 6.63C18.425 23.173 15.823 23.98 12.186 24zm-1.14-8.376c-1.016.075-1.834.355-2.374.812-.472.4-.692.907-.657 1.509.04.717.413 1.258 1.112 1.611.6.302 1.357.433 2.126.389 1.077-.06 1.9-.44 2.449-1.122.432-.538.723-1.263.858-2.145a8.21 8.21 0 0 0-3.514-.054z"/></svg>Threads</span>
+    </div>
+    <div class="seats"><span class="dot"></span><span><b>20 мест</b>&nbsp; часть уже занята</span></div>
+  </div>
+
+  <div class="right">
+    <div class="card">
+      <h2>Что входит</h2>
+      <div class="item"><span class="num">1</span><div><b>Наша рабочая схема по&nbsp;X</b><small>То, что уже работает у&nbsp;нас</small></div></div>
+      <div class="item"><span class="num">2</span><div><b>5 созвонов с&nbsp;разбором твоих цифр</b><small>Каждую неделю смотрим, что залетает</small></div></div>
+      <div class="item"><span class="num">3</span><div><b>Софт на&nbsp;все 3&nbsp;платформы</b><small>На&nbsp;всё время спринта</small></div></div>
+      <div class="price">
+        <div class="now">$300</div>
+        <div class="value">Ценность продукта<b>~$750</b></div>
+      </div>
+      <p class="extra"><b>Отдельно:</b> от $100 на&nbsp;прокси и&nbsp;аккаунты,<br>на&nbsp;Mac ещё аренда сервера</p>
+    </div>
+  </div>
+</body>
+</html>
